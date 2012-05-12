@@ -1,0 +1,96 @@
+module fuji.display;
+
+public import fuji.fuji;
+
+
+enum MFDisplayOrientation
+{
+	Normal,
+	_90CW,
+	_90CCW,
+	_180,
+	HFlip,
+	VFlip,
+}
+
+version(_NEW_DISPLAY)
+{
+	enum float MFASPECT_1x1 =	1.0;
+	enum float MFASPECT_4x3 =	4.0/3.0;
+	enum float MFASPECT_16x9 =	16.0/9.0;
+	enum float MFASPECT_16x10 =	16.0/10.0;
+
+	enum MFDisplayModeFlags
+	{
+		MFDM_Fullscreen = MFBIT!0
+	}
+
+	struct MFDisplay;
+
+	struct MFDisplayMode
+	{
+		int width;
+		int height;
+		float aspectRatio;
+		uint createFlags;
+	};
+
+	extern (C) MFDisplay* MFDisplay_Create(const char* pName, MFDisplayMode* pDisplayMode);
+	extern (C) void MFDisplay_Destroy(MFDisplay* pDisplay);
+
+	extern (C) int MFDisplay_GetDisplayModeCount();
+	extern (C) void MFDisplay_GetDisplayMode(MFDisplayMode* pDisplayMode);
+
+	extern (C) float MFDisplay_GetNativeAspectRatio();
+	extern (C) bool MFDisplay_IsWidescreen();
+
+	extern (C) void MFDisplay_HandleSystemMessages();
+
+	extern (C) MFDisplayOrientation MFDisplay_GetDisplayOrientation();
+
+	// these functions are reserved for use by the renderer, and may not be called if the renderer chooses to implement them its self
+	extern (C) void* MFDisplay_GetRenderBuffer(MFDisplay* pDisplay, int* pWidth, int* pHeight);
+	extern (C) void* MFDisplay_GetDisplayBuffer(MFDisplay* pDisplay, int* pWidth, int* pHeight);
+	extern (C) void MFDisplay_BlitToScreen(MFDisplay* pDisplay);
+}
+else
+{
+	enum float MFAspect_1x1 = 1.0;
+	enum float MFAspect_4x3 = 4.0/3.0;
+	enum float MFAspect_16x9 = 16.0/9.0;
+	enum float MFAspect_16x10 = 16.0/10.0;
+
+	// interface functions
+	extern (C) bool function() MFDisplay_SupportsFullscreen;
+	extern (C) void function(bool window = false, float aspectConstraint = 0.0) MFDisplay_GetNumDisplayModes;
+	extern (C) void function(int index, bool window = false, float aspectConstraint = 0.0) MFDisplay_GetDisplayMode;
+
+	extern (C) void function(MFRect* pRect) MFDisplay_GetNativeRes;
+	extern (C) void function(MFRect* pRect) MFDisplay_GetDefaultRes;
+
+	extern (C) void function(MFRect* pRect) MFDisplay_GetDisplayRect;
+
+	extern (C) float function() MFDisplay_GetNativeAspectRatio;
+	extern (C) bool function() MFDisplay_IsWidescreen;
+
+	extern (C) bool function() MFDisplay_HasFocus;
+
+	extern (C) MFDisplayOrientation function() MFDisplay_GetDisplayOrientation;
+
+
+private:
+
+	static this()
+	{
+//		FindFujiFunction!MFDisplay_SupportsFullscreen;
+//		FindFujiFunction!MFDisplay_GetNumDisplayModes;
+//		FindFujiFunction!MFDisplay_GetDisplayMode;
+		FindFujiFunction!MFDisplay_GetNativeRes;
+		FindFujiFunction!MFDisplay_GetDefaultRes;
+		FindFujiFunction!MFDisplay_GetDisplayRect;
+		FindFujiFunction!MFDisplay_GetNativeAspectRatio;
+		FindFujiFunction!MFDisplay_IsWidescreen;
+		FindFujiFunction!MFDisplay_HasFocus;
+		FindFujiFunction!MFDisplay_GetDisplayOrientation;
+	}
+}
