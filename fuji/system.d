@@ -74,14 +74,14 @@ struct MFInitParams
 * Begin initialisation of Fuji, and continue with the Fuji main loop.
 * @return An error code that can be returned to the OS.
 */
-extern (C) int function(const ref MFInitParams initParams) MFMain;
+extern (C) int MFMain(const ref MFInitParams initParams);
 
 /**
 * Quit the Fuji application.
 * Quits the Fuji application.
 * @return None.
 */
-extern (C) void function() MFSystem_Quit;
+extern (C) void MFSystem_Quit();
 
 /**
 * Set a Fuji system callback.
@@ -90,7 +90,7 @@ extern (C) void function() MFSystem_Quit;
 * @param pCallbackFunction Pointer to the callback function.
 * @return Returns a pointer to the old callback function which MUST be called in the new registered callback.
 */
-extern (C) MFSystemCallbackFunction function(MFCallback callback, MFSystemCallbackFunction pCallbackFunction) MFSystem_RegisterSystemCallback;
+extern (C) MFSystemCallbackFunction MFSystem_RegisterSystemCallback(MFCallback callback, MFSystemCallbackFunction pCallbackFunction);
 
 /**
 * Get a Fuji system callback function.
@@ -98,7 +98,7 @@ extern (C) MFSystemCallbackFunction function(MFCallback callback, MFSystemCallba
 * @param callback The callback to get from the MFCallback enum.
 * @return Returns the currently registered callback function for the requested callback.
 */
-extern (C) MFSystemCallbackFunction function(MFCallback callback) MFSystem_GetSystemCallback;
+extern (C) MFSystemCallbackFunction MFSystem_GetSystemCallback(MFCallback callback);
 
 /**
 * Generate engine initialisation data.
@@ -106,7 +106,7 @@ extern (C) MFSystemCallbackFunction function(MFCallback callback) MFSystem_GetSy
 * @param tabDepth Initial tab depth for ini generation.
 * @return Returns a string containing initialisation parameters for the engine in MFIni '.ini' format.
 */
-extern (C) const(char)* function(int tabDepth) MFSystem_GetSettingString;
+extern (C) const(char)* MFSystem_GetSettingString(int tabDepth);
 
 /**
 * Initialise Fuji from saved settings.
@@ -114,7 +114,7 @@ extern (C) const(char)* function(int tabDepth) MFSystem_GetSettingString;
 * @param pSettings Pointer to the first MFiniLine in an options group containing engine initialisation options.
 * @return None.
 */
-extern (C) void function(const MFIniLine *pSettings) MFSystem_InitFromSettings;
+extern (C) void MFSystem_InitFromSettings(const MFIniLine *pSettings);
 
 /**
 * Gets the current platform.
@@ -123,7 +123,7 @@ extern (C) void function(const MFIniLine *pSettings) MFSystem_InitFromSettings;
 * @see MFSystem_GetPlatformString()
 * @see MFSystem_GetPlatformName()
 */
-extern (C) MFPlatform function() MFSystem_GetCurrentPlatform;
+extern (C) MFPlatform MFSystem_GetCurrentPlatform();
 
 /**
 * Gets a platform identifier string.
@@ -133,7 +133,7 @@ extern (C) MFPlatform function() MFSystem_GetCurrentPlatform;
 * @see MFSystem_GetCurrentPlatform()
 * @see MFSystem_GetPlatformName()
 */
-extern (C) const(char)* function(int platform) MFSystem_GetPlatformString;
+extern (C) const(char)* MFSystem_GetPlatformString(int platform);
 
 /**
 * Gets a platform name.
@@ -143,14 +143,14 @@ extern (C) const(char)* function(int platform) MFSystem_GetPlatformString;
 * @see MFSystem_GetCurrentPlatform()
 * @see MFSystem_GetPlatformString()
 */
-extern (C) const(char)* function(int platform) MFSystem_GetPlatformName;
+extern (C) const(char)* MFSystem_GetPlatformName(int platform);
 
 /**
 * Gets the name of this system.
 * Gets a user friendly name for this system. Typically a network identification name.
 * @return Returns the system name string.
 */
-extern (C) const(char)* function() MFSystem_GetSystemName;
+extern (C) const(char)* MFSystem_GetSystemName();
 
 /**
 * Gets a platforms native endian.
@@ -159,7 +159,7 @@ extern (C) const(char)* function() MFSystem_GetSystemName;
 * @return The hardware endian of the specified platform.
 * @see MFSystem_GetCurrentPlatform()
 */
-extern (C) MFEndian function(int platform) MFSystem_GetPlatformEndian;
+extern (C) MFEndian MFSystem_GetPlatformEndian(int platform);
 
 /**
 * Read the time stamp counter.
@@ -167,7 +167,7 @@ extern (C) MFEndian function(int platform) MFSystem_GetPlatformEndian;
 * @return The time stamp counters current tick.
 * @see MFSystem_GetRTCFrequency()
 */
-extern (C) ulong function() MFSystem_ReadRTC;
+extern (C) ulong MFSystem_ReadRTC();
 
 /**
 * Read the time stamp counter frequency.
@@ -175,7 +175,7 @@ extern (C) ulong function() MFSystem_ReadRTC;
 * @return The time stamp counters clock frequency.
 * @see MFSystem_ReadRTC()
 */
-extern (C) ulong function() MFSystem_GetRTCFrequency;
+extern (C) ulong MFSystem_GetRTCFrequency();
 
 /**
 * Gets the current time delta.
@@ -183,7 +183,7 @@ extern (C) ulong function() MFSystem_GetRTCFrequency;
 * @return The current time delta.
 * @see MFSystem_GetFPS()
 */
-extern (C) float function() MFSystem_GetTimeDelta;
+extern (C) float MFSystem_GetTimeDelta();
 
 /**
 * Gets the current frame rate.
@@ -191,7 +191,7 @@ extern (C) float function() MFSystem_GetTimeDelta;
 * @return The current frame rate.
 * @see MFSystem_TimeDelta()
 */
-extern (C) float function() MFSystem_GetFPS;
+extern (C) float MFSystem_GetFPS();
 
 /**
 * Gets the current frame.
@@ -199,27 +199,30 @@ extern (C) float function() MFSystem_GetFPS;
 * @return The current frame count.
 * @see MFSystem_GetFPS()
 */
-extern (C) uint function() MFSystem_GetFrameCounter;
+extern (C) uint MFSystem_GetFrameCounter();
 
 
 private:
 
-static this()
+version(Windows)
 {
-	FindFujiFunction!MFMain;
-	FindFujiFunction!MFSystem_Quit;
-	FindFujiFunction!MFSystem_RegisterSystemCallback;
-	FindFujiFunction!MFSystem_GetSystemCallback;
-	FindFujiFunction!MFSystem_GetSettingString;
-	FindFujiFunction!MFSystem_InitFromSettings;
-	FindFujiFunction!MFSystem_GetCurrentPlatform;
-	FindFujiFunction!MFSystem_GetPlatformString;
-	FindFujiFunction!MFSystem_GetPlatformName;
-	FindFujiFunction!MFSystem_GetSystemName;
-	FindFujiFunction!MFSystem_GetPlatformEndian;
-	FindFujiFunction!MFSystem_ReadRTC;
-	FindFujiFunction!MFSystem_GetRTCFrequency;
-	FindFujiFunction!MFSystem_GetTimeDelta;
-	FindFujiFunction!MFSystem_GetFPS;
-	FindFujiFunction!MFSystem_GetFrameCounter;
+	static this()
+	{
+		FindFujiFunction!MFMain;
+		FindFujiFunction!MFSystem_Quit;
+		FindFujiFunction!MFSystem_RegisterSystemCallback;
+		FindFujiFunction!MFSystem_GetSystemCallback;
+		FindFujiFunction!MFSystem_GetSettingString;
+		FindFujiFunction!MFSystem_InitFromSettings;
+		FindFujiFunction!MFSystem_GetCurrentPlatform;
+		FindFujiFunction!MFSystem_GetPlatformString;
+		FindFujiFunction!MFSystem_GetPlatformName;
+		FindFujiFunction!MFSystem_GetSystemName;
+		FindFujiFunction!MFSystem_GetPlatformEndian;
+		FindFujiFunction!MFSystem_ReadRTC;
+		FindFujiFunction!MFSystem_GetRTCFrequency;
+		FindFujiFunction!MFSystem_GetTimeDelta;
+		FindFujiFunction!MFSystem_GetFPS;
+		FindFujiFunction!MFSystem_GetFrameCounter;
+	}
 }

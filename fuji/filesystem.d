@@ -36,9 +36,9 @@ enum MFOpenFlags : uint
 */
 enum MFFileSeek
 {
-	Begin,	/**< Seek from the start of the file */
+	Begin,		/**< Seek from the start of the file */
 	Current,	/**< Seek from the current file poition */
-	End		/**< Seek from the end of the file */
+	End			/**< Seek from the end of the file */
 }
 
 /**
@@ -59,7 +59,7 @@ enum MFJobState
 * @param filename Filename to append to the path. This may be set to null.
 * @return Returns the path to the game data directory.
 */
-extern (C) const(char)* function(const(char)* filename = null) MFFile_SystemPath;
+extern (C) const(char)* MFFile_SystemPath(const(char)* filename = null);
 
 /**
 * Gets the system home path.
@@ -68,7 +68,7 @@ extern (C) const(char)* function(const(char)* filename = null) MFFile_SystemPath
 * @return Returns the path to the game home directory.
 * @remarks The home path is typically used for debugging and development purposes (writing logs, screenshots, etc). The game should not require access to the home path.
 */
-extern (C) const(char)* function(const(char)* filename = null) MFFile_HomePath;
+extern (C) const(char)* MFFile_HomePath(const(char)* filename = null);
 
 
 ///////////////////////////
@@ -91,7 +91,7 @@ struct MFOpenData
 * @param pOpenData Pointer to an MFOpenData structure describing the file to open.
 * @return Returns a pointer to the newly opened file, returns null if the file open failed.
 */
-extern (C) MFFile* function(MFFileSystemHandle fileSystem, const ref MFOpenData openData) MFFile_Open;
+extern (C) MFFile* MFFile_Open(MFFileSystemHandle fileSystem, const ref MFOpenData openData);
 
 /**
 * Close a file.
@@ -99,7 +99,7 @@ extern (C) MFFile* function(MFFileSystemHandle fileSystem, const ref MFOpenData 
 * @param pFile Pointer to an open file.
 * @return Returns 0 if the file was successfully closed.
 */
-extern (C) int function(MFFile *pFile) MFFile_Close;
+extern (C) int MFFile_Close(MFFile *pFile);
 
 /**
 * Read data from a file.
@@ -110,7 +110,7 @@ extern (C) int function(MFFile *pFile) MFFile_Close;
 * @param async If true, the read will be performed asyncrenously, putting the file into a 'busy' state.
 * @return Returns the number of bytes read.
 */
-extern (C) int function(MFFile *pFile, void *pBuffer, size_t bytes, bool async = false) MFFile_Read;
+extern (C) int MFFile_Read(MFFile *pFile, void *pBuffer, size_t bytes, bool async = false);
 
 /**
 * Write to a file.
@@ -121,7 +121,7 @@ extern (C) int function(MFFile *pFile, void *pBuffer, size_t bytes, bool async =
 * @param async If true, the write will be performed asyncrenously, putting the file into a 'busy' state.
 * @return Returns the number of bytes written.
 */
-extern (C) int function(MFFile *pFile, const void *pBuffer, size_t bytes, bool async = false) MFFile_Write;
+extern (C) int MFFile_Write(MFFile *pFile, const void *pBuffer, size_t bytes, bool async = false);
 
 /**
 * Seek the file.
@@ -131,7 +131,7 @@ extern (C) int function(MFFile *pFile, const void *pBuffer, size_t bytes, bool a
 * @param relativity Member of the MFFileSeek enumerated type where to begin the seek.
 * @return Returns the new file offset in bytes.
 */
-extern (C) int function(MFFile *pFile, int bytes, MFFileSeek relativity) MFFile_Seek;
+extern (C) int MFFile_Seek(MFFile *pFile, int bytes, MFFileSeek relativity);
 
 /**
 * Tell the file position.
@@ -139,7 +139,7 @@ extern (C) int function(MFFile *pFile, int bytes, MFFileSeek relativity) MFFile_
 * @param pFile Pointer to an open file.
 * @return Returns the file pointer offset in bytes.
 */
-extern (C) int function(MFFile *pFile) MFFile_Tell;
+extern (C) int MFFile_Tell(MFFile *pFile);
 
 /**
 * Get the size of a file.
@@ -147,7 +147,7 @@ extern (C) int function(MFFile *pFile) MFFile_Tell;
 * @param pFile Pointer to an open file.
 * @return Returns the size of the file in bytes. Returns -1 for a file stream with an undefined length. Returns 0 if the file does not exist.
 */
-extern (C) long function(MFFile *pFile) MFFile_GetSize;
+extern (C) long MFFile_GetSize(MFFile *pFile);
 
 /**
 * Check for end of file.
@@ -155,7 +155,7 @@ extern (C) long function(MFFile *pFile) MFFile_GetSize;
 * @param pFile Pointer to an open file.
 * @return Returns true if the file pointer has reached the end of the file, otherwise false.
 */
-extern (C) bool function(MFFile *pFile) MFFile_IsEOF;
+extern (C) bool MFFile_IsEOF(MFFile *pFile);
 
 // stdio signiture functions (these can be used as callbacks to many libs and API's)
 
@@ -166,7 +166,7 @@ extern (C) bool function(MFFile *pFile) MFFile_IsEOF;
 * @return Returns 0 if the file was successfully closed.
 * @remarks This function complies with the stdio function signature (can be used as callbacks to many libs and API's).
 */
-extern (C) int function(void* stream) MFFile_StdClose;
+extern (C) int MFFile_StdClose(void* stream);
 
 /**
 * Read data from a file.
@@ -178,7 +178,7 @@ extern (C) int function(void* stream) MFFile_StdClose;
 * @return Returns the number of bytes read.
 * @remarks This function complies with the stdio function signature (can be used as callbacks to many libs and API's).
 */
-extern (C) size_t function(void *buffer, size_t size, size_t count, void* stream) MFFile_StdRead;
+extern (C) size_t MFFile_StdRead(void *buffer, size_t size, size_t count, void* stream);
 
 /**
 * Write to a file.
@@ -190,7 +190,7 @@ extern (C) size_t function(void *buffer, size_t size, size_t count, void* stream
 * @return Returns the number of bytes written.
 * @remarks This function complies with the stdio function signature (can be used as callbacks to many libs and API's).
 */
-extern (C) size_t function(const void *buffer, size_t size, size_t count, void* stream) MFFile_StdWrite;
+extern (C) size_t MFFile_StdWrite(const void *buffer, size_t size, size_t count, void* stream);
 
 /**
 * Seek the file.
@@ -201,7 +201,7 @@ extern (C) size_t function(const void *buffer, size_t size, size_t count, void* 
 * @return Returns the new file offset in bytes.
 * @remarks This function complies with the stdio function signature (can be used as callbacks to many libs and API's).
 */
-extern (C) long function(void* stream, long offset, int whence) MFFile_StdSeek;
+extern (C) long MFFile_StdSeek(void* stream, long offset, int whence);
 
 /**
 * Tell the file position.
@@ -210,7 +210,7 @@ extern (C) long function(void* stream, long offset, int whence) MFFile_StdSeek;
 * @return Returns the file pointer offset in bytes.
 * @remarks This function complies with the stdio function signature (can be used as callbacks to many libs and API's).
 */
-extern (C) long function(void* stream) MFFile_StdTell;
+extern (C) long MFFile_StdTell(void* stream);
 
 
 //////////////////////////////
@@ -318,7 +318,7 @@ struct MFVolumeInfo
 * @param fileSystemHandle Enum of the filesystem to retrieve.
 * @return Returns the FileSystemHandle for the specified filesystem.
 */
-extern (C) MFFileSystemHandle function(MFFileSystemHandles fileSystemHandle) MFFileSystem_GetInternalFileSystemHandle;
+extern (C) MFFileSystemHandle MFFileSystem_GetInternalFileSystemHandle(MFFileSystemHandles fileSystemHandle);
 
 /**
 * Mounts a filesystem.
@@ -327,7 +327,7 @@ extern (C) MFFileSystemHandle function(MFFileSystemHandles fileSystemHandle) MFF
 * @param pMountData Pointer to a MFMountData structure filled with all the mount parameters.
 * @return Returns 0 if filesystem was successfully mounted.
 */
-extern (C) int function(MFFileSystemHandle fileSystem, const ref MFMountData mountData) MFFileSystem_Mount;
+extern (C) int MFFileSystem_Mount(MFFileSystemHandle fileSystem, const ref MFMountData mountData);
 
 /**
 * Mounts a filesystem from a fuji path.
@@ -338,7 +338,7 @@ extern (C) int function(MFFileSystemHandle fileSystem, const ref MFMountData mou
 * @param flags Mount flags, this can be any combination of values from the MFMountFlags enum.
 * @return Returns 0 if filesystem was successfully mounted.
 */
-extern (C) int function(const(char)* pMountpoint, const(char)* pFujiPath, int priority = MFMountPriority.Normal, uint flags = 0) MFFileSystem_MountFujiPath;
+extern (C) int MFFileSystem_MountFujiPath(const(char)* pMountpoint, const(char)* pFujiPath, int priority = MFMountPriority.Normal, uint flags = 0);
 
 /**
 * Dismount a filesystem.
@@ -346,7 +346,7 @@ extern (C) int function(const(char)* pMountpoint, const(char)* pFujiPath, int pr
 * @param pMountpoint The name of the mountpoint for the filesystem to dismount.
 * @return Returns 0 if the filesystem was successfully dismounted.
 */
-extern (C) int function(const(char)* pMountpoint) MFFileSystem_Dismount;
+extern (C) int MFFileSystem_Dismount(const(char)* pMountpoint);
 
 /**
 * Open a file from the mounted filesystem stack.
@@ -355,7 +355,7 @@ extern (C) int function(const(char)* pMountpoint) MFFileSystem_Dismount;
 * @param openFlags Open file flags.
 * @return Returns a pointer to the opened file. Returns null if open failed.
 */
-extern (C) MFFile* function(const(char)* pFilename, uint openFlags = MFOpenFlags.Read | MFOpenFlags.Binary) MFFileSystem_Open;
+extern (C) MFFile* MFFileSystem_Open(const(char)* pFilename, uint openFlags = MFOpenFlags.Read | MFOpenFlags.Binary);
 
 /**
 * Load a file from the filesystem.
@@ -365,7 +365,7 @@ extern (C) MFFile* function(const(char)* pFilename, uint openFlags = MFOpenFlags
 * @param bAppendnullByte Append a null byte to the end of the file. (Useful when loading text files for parsing)
 * @return Returns a pointer to a new buffer containing the file that was loaded.
 */
-extern (C) char* function(const(char)* pFilename, size_t *pBytesRead = null, bool bAppendnullByte = false) MFFileSystem_Load;
+extern (C) char* MFFileSystem_Load(const(char)* pFilename, size_t *pBytesRead = null, bool bAppendnullByte = false);
 
 /**
 * Write a file to a filesystem.
@@ -375,7 +375,7 @@ extern (C) char* function(const(char)* pFilename, size_t *pBytesRead = null, boo
 * @param size Size of the buffer to write.
 * @return Returns 0 if the file was succesfully written.
 */
-extern (C) int function(const(char)* pFilename, const(char)* pBuffer, size_t size) MFFileSystem_Save;
+extern (C) int MFFileSystem_Save(const(char)* pFilename, const(char)* pBuffer, size_t size);
 
 /**
 * Get the size of a file.
@@ -384,7 +384,7 @@ extern (C) int function(const(char)* pFilename, const(char)* pBuffer, size_t siz
 * @return Returns the size of the file in bytes. If the file does not exist, MFFileSystem_GetSize returns 0.
 * @remarks If the file does not exist, MFFileSystem_GetSize returns 0, however, a zero length file will also return 0. Use MFFileSystem_Exists to correctly test if a file exists. MFFileSystem_GetSize may also return -1 if the files length is not known, for instance, an endless or unknown length network stream.
 */
-extern (C) long function(const(char)* pFilename) MFFileSystem_GetSize;
+extern (C) long MFFileSystem_GetSize(const(char)* pFilename);
 
 /**
 * See if a file is available to the filesystem.
@@ -392,14 +392,14 @@ extern (C) long function(const(char)* pFilename) MFFileSystem_GetSize;
 * @param pFilename The filename to search the filesystem for.
 * @return Returns true if the file can be found within the mounted filesystem stack.
 */
-extern (C) bool function(const(char)* pFilename) MFFileSystem_Exists;
+extern (C) bool MFFileSystem_Exists(const(char)* pFilename);
 
 /**
 * Get number of available volumes.
 * Gets the number of available volumes.
 * @return The number of mounted volumes.
 */
-extern (C) int function() MFFileSystem_GetNumVolumes;
+extern (C) int MFFileSystem_GetNumVolumes();
 
 /**
 * Get volume mount details.
@@ -408,7 +408,7 @@ extern (C) int function() MFFileSystem_GetNumVolumes;
 * @param pVolumeInfo Pointer to an MFVolumeInfo structre that receives the volumes mount details.
 * @return None.
 */
-extern (C) void function(int volumeID, MFVolumeInfo *pVolumeInfo) MFFileSystem_GetVolumeInfo;
+extern (C) void MFFileSystem_GetVolumeInfo(int volumeID, MFVolumeInfo *pVolumeInfo);
 
 /**
 * Begin a find for files.
@@ -419,7 +419,7 @@ extern (C) void function(int volumeID, MFVolumeInfo *pVolumeInfo) MFFileSystem_G
 * @remarks Currently the only valid filename pattern is '*'. For example: "data:subdir/ *" is a valid search pattern.
 * @see MFFileSystem_FindNext(), MFFileSystem_FindClose()
 */
-extern (C) MFFind* function(const(char)* pSearchPattern, MFFindData *pFindData) MFFileSystem_FindFirst;
+extern (C) MFFind* MFFileSystem_FindFirst(const(char)* pSearchPattern, MFFindData *pFindData);
 
 /**
 * Find the next file.
@@ -429,7 +429,7 @@ extern (C) MFFind* function(const(char)* pSearchPattern, MFFindData *pFindData) 
 * @return Returns true on success or false if there are no more files in the directory.
 * @see MFFileSystem_FindFirst(), MFFileSystem_FindClose()
 */
-extern (C) bool function(MFFind *pFind, MFFindData *pFindData) MFFileSystem_FindNext;
+extern (C) bool MFFileSystem_FindNext(MFFind *pFind, MFFindData *pFindData);
 
 /**
 * Close an open find.
@@ -438,47 +438,50 @@ extern (C) bool function(MFFind *pFind, MFFindData *pFindData) MFFileSystem_Find
 * @return None.
 * @see MFFileSystem_FindFirst()
 */
-extern (C) void function(MFFind *pFind) MFFileSystem_FindClose;
+extern (C) void MFFileSystem_FindClose(MFFind *pFind);
 
 
 /////////////////////////////////////
 // helper functions, to make life easier
 
-extern (C) MFFile* function(const void *pMemory, size_t size, bool writable = false, bool ownMemory = false) MFFile_CreateMemoryFile;
+extern (C) MFFile* MFFile_CreateMemoryFile(const void *pMemory, size_t size, bool writable = false, bool ownMemory = false);
 
 
 private:
 
-static this()
+version(Windows)
 {
-	FindFujiFunction!MFFile_SystemPath;
-	FindFujiFunction!MFFile_HomePath;
-	FindFujiFunction!MFFile_Open;
-	FindFujiFunction!MFFile_Close;
-	FindFujiFunction!MFFile_Read;
-	FindFujiFunction!MFFile_Write;
-	FindFujiFunction!MFFile_Seek;
-	FindFujiFunction!MFFile_Tell;
-	FindFujiFunction!MFFile_GetSize;
-	FindFujiFunction!MFFile_IsEOF;
-	FindFujiFunction!MFFile_StdClose;
-	FindFujiFunction!MFFile_StdRead;
-	FindFujiFunction!MFFile_StdWrite;
-	FindFujiFunction!MFFile_StdSeek;
-	FindFujiFunction!MFFile_StdTell;
-	FindFujiFunction!MFFileSystem_GetInternalFileSystemHandle;
-	FindFujiFunction!MFFileSystem_Mount;
-	FindFujiFunction!MFFileSystem_MountFujiPath;
-	FindFujiFunction!MFFileSystem_Dismount;
-	FindFujiFunction!MFFileSystem_Open;
-	FindFujiFunction!MFFileSystem_Load;
-	FindFujiFunction!MFFileSystem_Save;
-	FindFujiFunction!MFFileSystem_GetSize;
-	FindFujiFunction!MFFileSystem_Exists;
-	FindFujiFunction!MFFileSystem_GetNumVolumes;
-	FindFujiFunction!MFFileSystem_GetVolumeInfo;
-	FindFujiFunction!MFFileSystem_FindFirst;
-	FindFujiFunction!MFFileSystem_FindNext;
-	FindFujiFunction!MFFileSystem_FindClose;
-	FindFujiFunction!MFFile_CreateMemoryFile;
+	static this()
+	{
+		FindFujiFunction!MFFile_SystemPath;
+		FindFujiFunction!MFFile_HomePath;
+		FindFujiFunction!MFFile_Open;
+		FindFujiFunction!MFFile_Close;
+		FindFujiFunction!MFFile_Read;
+		FindFujiFunction!MFFile_Write;
+		FindFujiFunction!MFFile_Seek;
+		FindFujiFunction!MFFile_Tell;
+		FindFujiFunction!MFFile_GetSize;
+		FindFujiFunction!MFFile_IsEOF;
+		FindFujiFunction!MFFile_StdClose;
+		FindFujiFunction!MFFile_StdRead;
+		FindFujiFunction!MFFile_StdWrite;
+		FindFujiFunction!MFFile_StdSeek;
+		FindFujiFunction!MFFile_StdTell;
+		FindFujiFunction!MFFileSystem_GetInternalFileSystemHandle;
+		FindFujiFunction!MFFileSystem_Mount;
+		FindFujiFunction!MFFileSystem_MountFujiPath;
+		FindFujiFunction!MFFileSystem_Dismount;
+		FindFujiFunction!MFFileSystem_Open;
+		FindFujiFunction!MFFileSystem_Load;
+		FindFujiFunction!MFFileSystem_Save;
+		FindFujiFunction!MFFileSystem_GetSize;
+		FindFujiFunction!MFFileSystem_Exists;
+		FindFujiFunction!MFFileSystem_GetNumVolumes;
+		FindFujiFunction!MFFileSystem_GetVolumeInfo;
+		FindFujiFunction!MFFileSystem_FindFirst;
+		FindFujiFunction!MFFileSystem_FindNext;
+		FindFujiFunction!MFFileSystem_FindClose;
+		FindFujiFunction!MFFile_CreateMemoryFile;
+	}
 }

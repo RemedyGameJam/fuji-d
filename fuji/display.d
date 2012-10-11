@@ -61,36 +61,39 @@ else
 	enum float MFAspect_16x10 = 16.0/10.0;
 
 	// interface functions
-	extern (C) bool function() MFDisplay_SupportsFullscreen;
-	extern (C) void function(bool window = false, float aspectConstraint = 0.0) MFDisplay_GetNumDisplayModes;
-	extern (C) void function(int index, bool window = false, float aspectConstraint = 0.0) MFDisplay_GetDisplayMode;
+	extern (C) bool MFDisplay_SupportsFullscreen();
+	extern (C) void MFDisplay_GetNumDisplayModes(bool window = false, float aspectConstraint = 0.0);
+	extern (C) void MFDisplay_GetDisplayMode(int index, bool window = false, float aspectConstraint = 0.0);
 
-	extern (C) void function(MFRect* pRect) MFDisplay_GetNativeRes;
-	extern (C) void function(MFRect* pRect) MFDisplay_GetDefaultRes;
+	extern (C) void MFDisplay_GetNativeRes(MFRect* pRect);
+	extern (C) void MFDisplay_GetDefaultRes(MFRect* pRect);
 
-	extern (C) void function(MFRect* pRect) MFDisplay_GetDisplayRect;
+	extern (C) void MFDisplay_GetDisplayRect(MFRect* pRect);
 
-	extern (C) float function() MFDisplay_GetNativeAspectRatio;
-	extern (C) bool function() MFDisplay_IsWidescreen;
+	extern (C) float MFDisplay_GetNativeAspectRatio();
+	extern (C) bool MFDisplay_IsWidescreen();
 
-	extern (C) bool function() MFDisplay_HasFocus;
+	extern (C) bool MFDisplay_HasFocus();
 
-	extern (C) MFDisplayOrientation function() MFDisplay_GetDisplayOrientation;
+	extern (C) MFDisplayOrientation MFDisplay_GetDisplayOrientation();
 
 
 private:
 
-	static this()
+	version(Windows)
 	{
-//		FindFujiFunction!MFDisplay_SupportsFullscreen;
-//		FindFujiFunction!MFDisplay_GetNumDisplayModes;
-//		FindFujiFunction!MFDisplay_GetDisplayMode;
-		FindFujiFunction!MFDisplay_GetNativeRes;
-		FindFujiFunction!MFDisplay_GetDefaultRes;
-		FindFujiFunction!MFDisplay_GetDisplayRect;
-		FindFujiFunction!MFDisplay_GetNativeAspectRatio;
-		FindFujiFunction!MFDisplay_IsWidescreen;
-		FindFujiFunction!MFDisplay_HasFocus;
-		FindFujiFunction!MFDisplay_GetDisplayOrientation;
+		static this()
+		{
+//			FindFujiFunction!MFDisplay_SupportsFullscreen;
+//			FindFujiFunction!MFDisplay_GetNumDisplayModes;
+//			FindFujiFunction!MFDisplay_GetDisplayMode;
+			FindFujiFunction!MFDisplay_GetNativeRes;
+			FindFujiFunction!MFDisplay_GetDefaultRes;
+			FindFujiFunction!MFDisplay_GetDisplayRect;
+			FindFujiFunction!MFDisplay_GetNativeAspectRatio;
+			FindFujiFunction!MFDisplay_IsWidescreen;
+			FindFujiFunction!MFDisplay_HasFocus;
+			FindFujiFunction!MFDisplay_GetDisplayOrientation;
+		}
 	}
 }

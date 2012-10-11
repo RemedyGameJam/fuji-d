@@ -86,17 +86,17 @@ enum MFClearScreenFlags
 	All = Colour | ZBuffer | Stencil
 }
 
-extern (C) void function(float r, float g, float b, float a) MFRenderer_SetClearColour;
-extern (C) void function(uint flags = MFClearScreenFlags.All) MFRenderer_ClearScreen;
+extern (C) void MFRenderer_SetClearColour(float r, float g, float b, float a);
+extern (C) void MFRenderer_ClearScreen(uint flags = MFClearScreenFlags.All);
 
-extern (C) void function(MFRect* pRect) MFRenderer_GetViewport;
-extern (C) void function(MFRect* pRect) MFRenderer_SetViewport;
-extern (C) void function() MFRenderer_ResetViewport;
+extern (C) void MFRenderer_GetViewport(MFRect* pRect);
+extern (C) void MFRenderer_SetViewport(MFRect* pRect);
+extern (C) void MFRenderer_ResetViewport();
 
-extern (C) void function(MFTexture *pRenderTarget, MFTexture *pZTarget) MFRenderer_SetRenderTarget;
-extern (C) void function() MFRenderer_SetDeviceRenderTarget;
+extern (C) void MFRenderer_SetRenderTarget(MFTexture *pRenderTarget, MFTexture *pZTarget);
+extern (C) void MFRenderer_SetDeviceRenderTarget();
 
-extern (C) float function() MFRenderer_GetTexelCenterOffset;
+extern (C) float MFRenderer_GetTexelCenterOffset();
 
 /**
 * Begin a render block.
@@ -104,7 +104,7 @@ extern (C) float function() MFRenderer_GetTexelCenterOffset;
 * @return Remaining number of passes.
 * @remarks MFRenderer_Begin() should be called in a while loop to perform multipass effects. The same geometry should be submitted for each renderer pass.
 */
-extern (C) int function() MFRenderer_Begin; // returns number of passes remaining..
+extern (C) int MFRenderer_Begin(); // returns number of passes remaining..
 
 /**
 * Get a transform matrix.
@@ -112,7 +112,7 @@ extern (C) int function() MFRenderer_Begin; // returns number of passes remainin
 * @param type The matrix type to retrieve.
 * @return Returns a const reference to the specified matrix.
 */
-extern (C) const(MFMatrix)* function(MFMatrixType type) MFRenderer_GetMatrix;
+extern (C) const(MFMatrix)* MFRenderer_GetMatrix(MFMatrixType type);
 
 /**
 * Set a transform matrix.
@@ -121,7 +121,7 @@ extern (C) const(MFMatrix)* function(MFMatrixType type) MFRenderer_GetMatrix;
 * @param matrix A matrix to set as the specified matrix type.
 * @return None.
 */
-extern (C) void function(MFMatrixType type, const ref MFMatrix matrix) MFRenderer_SetMatrix;
+extern (C) void MFRenderer_SetMatrix(MFMatrixType type, const ref MFMatrix matrix);
 
 /**
 * Set the animation matrices.
@@ -130,7 +130,7 @@ extern (C) void function(MFMatrixType type, const ref MFMatrix matrix) MFRendere
 * @param numMatrices The number of matrices that \a pMatrices points to.
 * @return None.
 */
-extern (C) void function(const(MFMatrix)* pMatrices, int numMatrices) MFRenderer_SetMatrices;
+extern (C) void MFRenderer_SetMatrices(const(MFMatrix)* pMatrices, int numMatrices);
 
 /**
 * Set the current animation bone batch.
@@ -139,14 +139,14 @@ extern (C) void function(const(MFMatrix)* pMatrices, int numMatrices) MFRenderer
 * @param numBonesInBatch The number of bones in the batch.
 * @return None.
 */
-extern (C) void function(const(ushort)* pBatch, int numBonesInBatch) MFRenderer_SetBatch;
+extern (C) void MFRenderer_SetBatch(const(ushort)* pBatch, int numBonesInBatch);
 
 /**
 * Flush the renderer settings to the hardware.
 * Flushes the renderer settings to the hardware.
 * @return None.
 */
-extern (C) void function() MFRenderer_FlushSettings;
+extern (C) void MFRenderer_FlushSettings();
 
 /**
 * Render a mesh chunk.
@@ -154,7 +154,7 @@ extern (C) void function() MFRenderer_FlushSettings;
 * @param pMeshChunk Pointer to the mesh chunk to be rendered.
 * @return None.
 */
-extern (C) void function(MFMeshChunk* pMeshChunk) MFRenderer_RenderMeshChunk;
+extern (C) void MFRenderer_RenderMeshChunk(MFMeshChunk* pMeshChunk);
 
 /**
 * Begin an immediate mode block.
@@ -163,7 +163,7 @@ extern (C) void function(MFMeshChunk* pMeshChunk) MFRenderer_RenderMeshChunk;
 * @param renderFlags Flags to be passed to the renderer. Should be a combination of flags from the MFRenderFlags enumerated type.
 * @return Ummmm? Some kind of error?
 */
-extern (C) int function(MFPrimType primType, uint renderFlags) MFRenderer_BeginImmediate;
+extern (C) int MFRenderer_BeginImmediate(MFPrimType primType, uint renderFlags);
 
 /**
 * Begin submiting vertices to the renderer.
@@ -171,7 +171,7 @@ extern (C) int function(MFPrimType primType, uint renderFlags) MFRenderer_BeginI
 * @param numVertices Number of vertices to be submitted.
 * @return Ummmm? Some kind of error?
 */
-extern (C) int function(int numVertices) MFRenderer_RenderVertices;
+extern (C) int MFRenderer_RenderVertices(int numVertices);
 
 /**
 * Submit vertex data.
@@ -183,7 +183,7 @@ extern (C) int function(int numVertices) MFRenderer_RenderVertices;
 * @param w W component of data.
 * @return None.
 */
-extern (C) void function(MFVertexComponent vertexComponent, float x, float y, float z, float w) MFRenderer_SetVertexData4f;
+extern (C) void MFRenderer_SetVertexData4f(MFVertexComponent vertexComponent, float x, float y, float z, float w);
 
 /**
 * Submit vertex data.
@@ -192,21 +192,21 @@ extern (C) void function(MFVertexComponent vertexComponent, float x, float y, fl
 * @param data Vector specifying data for the vertex component.
 * @return None.
 */
-extern (C) void function(MFVertexComponent vertexComponent, const ref MFVector data) MFRenderer_SetVertexData4v;
+extern (C) void MFRenderer_SetVertexData4v(MFVertexComponent vertexComponent, const ref MFVector data);
 
 /**
 * End submitting vertices.
 * Ends submition of vertices.
 * @return None.
 */
-extern (C) void function() MFRenderer_EndVertices;
+extern (C) void MFRenderer_EndVertices();
 
 /**
 * End immediate mode rendering.
 * Ends immediate mode rendering.
 * @return None.
 */
-extern (C) void function() MFRenderer_EndImmediate;
+extern (C) void MFRenderer_EndImmediate();
 
 
 enum MFRenderState
@@ -229,7 +229,7 @@ enum MFRenderState
 * @param value Value to set.
 * @return Returns the old value.
 */
-extern (C) size_t function(uint renderState, size_t value) MFRenderer_SetRenderStateOverride;
+extern (C) size_t MFRenderer_SetRenderStateOverride(uint renderState, size_t value);
 
 /**
 * Get the value of a global renderstate override state.
@@ -237,36 +237,39 @@ extern (C) size_t function(uint renderState, size_t value) MFRenderer_SetRenderS
 * @param renderState The global renderstate to get.
 * @return Returns the current value of the global renderstate.
 */
-extern (C) size_t function(uint renderState) MFRenderer_GetRenderStateOverride;
+extern (C) size_t MFRenderer_GetRenderStateOverride(uint renderState);
 
 
 private:
 
-static this()
+version(Windows)
 {
-	FindFujiFunction!MFRenderer_SetClearColour;
-	FindFujiFunction!MFRenderer_ClearScreen;
-	FindFujiFunction!MFRenderer_GetViewport;
-	FindFujiFunction!MFRenderer_SetViewport;
-	FindFujiFunction!MFRenderer_ResetViewport;
-	FindFujiFunction!MFRenderer_SetRenderTarget;
-	FindFujiFunction!MFRenderer_SetDeviceRenderTarget;
-	FindFujiFunction!MFRenderer_GetTexelCenterOffset;
-	FindFujiFunction!MFRenderer_Begin;
-	FindFujiFunction!MFRenderer_GetMatrix;
-	FindFujiFunction!MFRenderer_SetMatrix;
-	FindFujiFunction!MFRenderer_SetMatrices;
-	FindFujiFunction!MFRenderer_SetBatch;
-/*
-	FindFujiFunction!MFRenderer_FlushSettings;
-	FindFujiFunction!MFRenderer_RenderMeshChunk;
-	FindFujiFunction!MFRenderer_BeginImmediate;
-	FindFujiFunction!MFRenderer_RenderVertices;
-	FindFujiFunction!MFRenderer_SetVertexData4f;
-	FindFujiFunction!MFRenderer_SetVertexData4v;
-	FindFujiFunction!MFRenderer_EndVertices;
-	FindFujiFunction!MFRenderer_EndImmediate;
-*/
-	FindFujiFunction!MFRenderer_SetRenderStateOverride;
-	FindFujiFunction!MFRenderer_GetRenderStateOverride;
+	static this()
+	{
+		FindFujiFunction!MFRenderer_SetClearColour;
+		FindFujiFunction!MFRenderer_ClearScreen;
+		FindFujiFunction!MFRenderer_GetViewport;
+		FindFujiFunction!MFRenderer_SetViewport;
+		FindFujiFunction!MFRenderer_ResetViewport;
+		FindFujiFunction!MFRenderer_SetRenderTarget;
+		FindFujiFunction!MFRenderer_SetDeviceRenderTarget;
+		FindFujiFunction!MFRenderer_GetTexelCenterOffset;
+		FindFujiFunction!MFRenderer_Begin;
+		FindFujiFunction!MFRenderer_GetMatrix;
+		FindFujiFunction!MFRenderer_SetMatrix;
+		FindFujiFunction!MFRenderer_SetMatrices;
+		FindFujiFunction!MFRenderer_SetBatch;
+	/*
+		FindFujiFunction!MFRenderer_FlushSettings;
+		FindFujiFunction!MFRenderer_RenderMeshChunk;
+		FindFujiFunction!MFRenderer_BeginImmediate;
+		FindFujiFunction!MFRenderer_RenderVertices;
+		FindFujiFunction!MFRenderer_SetVertexData4f;
+		FindFujiFunction!MFRenderer_SetVertexData4v;
+		FindFujiFunction!MFRenderer_EndVertices;
+		FindFujiFunction!MFRenderer_EndImmediate;
+	*/
+		FindFujiFunction!MFRenderer_SetRenderStateOverride;
+		FindFujiFunction!MFRenderer_GetRenderStateOverride;
+	}
 }

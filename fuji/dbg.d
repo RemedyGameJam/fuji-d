@@ -3,7 +3,7 @@ module fuji.dbg;
 import fuji.fuji;
 
 
-extern (C) void function(const(char)* pReason, const(char)* pMessage, const(char)* pFile = __FILE__.ptr, int line = __LINE__) MFDebug_DebugAssert;
+extern (C) void MFDebug_DebugAssert(const(char)* pReason, const(char)* pMessage, const(char)* pFile = __FILE__.ptr, int line = __LINE__);
 
 void MFDebug_Assert(in char[] reason, in char[] message, string file = __FILE__, int line = __LINE__)
 {
@@ -16,7 +16,7 @@ void MFDebug_Assert(in char[] reason, in char[] message, string file = __FILE__,
 * @param pMessage Message to be written to the debug output.
 * @return None.
 */
-extern (C) void function(const(char)* pMessage) MFDebug_Message;
+extern (C) void MFDebug_Message(const(char)* pMessage);
 
 /**
 * Notifies the user of a critical error.
@@ -24,7 +24,7 @@ extern (C) void function(const(char)* pMessage) MFDebug_Message;
 * @param pErrorMessage Error message.
 * @return None.
 */
-extern (C) void function(const(char)* pErrorMessage) MFDebug_Error;
+extern (C) void MFDebug_Error(const(char)* pErrorMessage);
 
 /**
 * Notifies the user of a runtime warning.
@@ -41,7 +41,7 @@ extern (C) void function(const(char)* pErrorMessage) MFDebug_Error;
 * - 3 - General Warning. For general information feedback.
 * - 4 - Low Warning. For small generally unimportant details.
 */
-extern (C) void function(int level, const(char)* pWarningMessage) MFDebug_Warn;
+extern (C) void MFDebug_Warn(int level, const(char)* pWarningMessage);
 
 /**
 * Log a message to the debug output.
@@ -58,7 +58,7 @@ extern (C) void function(int level, const(char)* pWarningMessage) MFDebug_Warn;
 * - 3 - Typically unwanted message.
 * - 4 - Very trivial and probably frequent spammy message.
 */
-extern (C) void function(int level, const(char)* pMessage) MFDebug_Log;
+extern (C) void MFDebug_Log(int level, const(char)* pMessage);
 
 /**
 * Sets the maximum warning level.
@@ -66,7 +66,7 @@ extern (C) void function(int level, const(char)* pMessage) MFDebug_Log;
 * @param maxLevel Maximum warning level (0-4).
 * @return None.
 */
-extern (C) void function(int maxLevel) MFDebug_SetMaximumWarningLevel;
+extern (C) void MFDebug_SetMaximumWarningLevel(int maxLevel);
 
 /**
 * Sets the maximum log level.
@@ -74,16 +74,18 @@ extern (C) void function(int maxLevel) MFDebug_SetMaximumWarningLevel;
 * @param maxLevel Maximum log level (0-4).
 * @return None.
 */
-extern (C) void function(int maxLevel) MFDebug_SetMaximumLogLevel;
+extern (C) void MFDebug_SetMaximumLogLevel(int maxLevel);
 
-
-package void HookupDebug()
+version(Windows)
 {
-	FindFujiFunction!MFDebug_DebugAssert;
-	FindFujiFunction!MFDebug_Message;
-	FindFujiFunction!MFDebug_Error;
-	FindFujiFunction!MFDebug_Warn;
-	FindFujiFunction!MFDebug_Log;
-	FindFujiFunction!MFDebug_SetMaximumWarningLevel;
-	FindFujiFunction!MFDebug_SetMaximumLogLevel;
+	package void HookupDebug()
+	{
+		FindFujiFunction!MFDebug_DebugAssert;
+		FindFujiFunction!MFDebug_Message;
+		FindFujiFunction!MFDebug_Error;
+		FindFujiFunction!MFDebug_Warn;
+		FindFujiFunction!MFDebug_Log;
+		FindFujiFunction!MFDebug_SetMaximumWarningLevel;
+		FindFujiFunction!MFDebug_SetMaximumLogLevel;
+	}
 }

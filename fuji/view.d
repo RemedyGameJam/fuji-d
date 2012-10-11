@@ -9,7 +9,7 @@ import fuji.matrix;
 * @return None.
 * @see MFView_Pop()
 */
-extern (C) void function() MFView_Push;
+extern (C) void MFView_Push();
 
 /**
 * Pop the top view state.
@@ -17,7 +17,7 @@ extern (C) void function() MFView_Push;
 * @return None.
 * @see MFView_Push()
 */
-extern (C) void function() MFView_Pop;
+extern (C) void MFView_Pop();
 
 /**
 * Configure the view to defaults.
@@ -26,7 +26,7 @@ extern (C) void function() MFView_Pop;
 * @see MFView_Push()
 * @see MFView_Pop()
 */
-extern (C) void function() MFView_SetDefault;
+extern (C) void MFView_SetDefault();
 
 /**
 * Configure the projection matrix.
@@ -38,7 +38,7 @@ extern (C) void function() MFView_SetDefault;
 * @see MFView_SetProjection()
 * @see MFView_SetAspectRatio()
 */
-extern (C) void function(float fieldOfView, float nearPlane, float farPlane) MFView_ConfigureProjection;
+extern (C) void MFView_ConfigureProjection(float fieldOfView, float nearPlane, float farPlane);
 
 /**
 * Set a custom projection matrix.
@@ -49,7 +49,7 @@ extern (C) void function(float fieldOfView, float nearPlane, float farPlane) MFV
 * @see MFView_SetProjection()
 * @see MFView_SetOrtho()
 */
-extern (C) void function(ref MFMatrix projectionMatrix, bool bYIsUp) MFView_SetCustomProjection;
+extern (C) void MFView_SetCustomProjection(ref MFMatrix projectionMatrix, bool bYIsUp);
 
 /**
 * Set the aspect ratio.
@@ -58,7 +58,7 @@ extern (C) void function(ref MFMatrix projectionMatrix, bool bYIsUp) MFView_SetC
 * @return None.
 * @see MFView_ConfigureProjection()
 */
-extern (C) void function(float aspectRatio) MFView_SetAspectRatio;
+extern (C) void MFView_SetAspectRatio(float aspectRatio);
 
 /**
 * Set the view to projection mode.
@@ -66,7 +66,7 @@ extern (C) void function(float aspectRatio) MFView_SetAspectRatio;
 * @return None.
 * @see MFView_SetOrtho()
 */
-extern (C) void function() MFView_SetProjection;
+extern (C) void MFView_SetProjection();
 
 /**
 * Set the view to orthographic mode.
@@ -75,7 +75,7 @@ extern (C) void function() MFView_SetProjection;
 * @return None.
 * @see MFView_SetProjection()
 */
-extern (C) void function(MFRect *pOrthoRect = null) MFView_SetOrtho;
+extern (C) void MFView_SetOrtho(MFRect *pOrthoRect = null);
 
 /**
 * Get the current ortho rect.
@@ -84,7 +84,7 @@ extern (C) void function(MFRect *pOrthoRect = null) MFView_SetOrtho;
 * @return None.
 * @see MFView_SetOrtho()
 */
-extern (C) void function(MFRect *pOrthoRect) MFView_GetOrthoRect;
+extern (C) void MFView_GetOrthoRect(MFRect *pOrthoRect);
 
 /**
 * Test for ortho state.
@@ -92,7 +92,7 @@ extern (C) void function(MFRect *pOrthoRect) MFView_GetOrthoRect;
 * @return Returns true if ortho mode is enabled.
 * @see MFView_SetOrtho()
 */
-extern (C) bool function() MFView_IsOrtho;
+extern (C) bool MFView_IsOrtho();
 
 /**
 * Sets the camera matrix.
@@ -101,7 +101,7 @@ extern (C) bool function() MFView_IsOrtho;
 * @return None.
 * @see MFView_GetCameraMatrix()
 */
-extern (C) void function(const ref MFMatrix cameraMatrix) MFView_SetCameraMatrix;
+extern (C) void MFView_SetCameraMatrix(const ref MFMatrix cameraMatrix);
 
 /**
 * Gets the camera matrix.
@@ -109,7 +109,7 @@ extern (C) void function(const ref MFMatrix cameraMatrix) MFView_SetCameraMatrix
 * @return Const ref to the current camera matrix.
 * @see MFView_SetCameraMatrix()
 */
-extern (C) const(MFMatrix)* function() MFView_GetCameraMatrix;
+extern (C) const(MFMatrix)* MFView_GetCameraMatrix();
 
 /**
 * Gets the World to View matrix.
@@ -118,7 +118,7 @@ extern (C) const(MFMatrix)* function() MFView_GetCameraMatrix;
 * @see MFView_GetViewToScreenMatrix()
 * @see MFView_GetWorldToScreenMatrix()
 */
-extern (C) const(MFMatrix)* function() MFView_GetWorldToViewMatrix;
+extern (C) const(MFMatrix)* MFView_GetWorldToViewMatrix();
 
 /**
 * Gets the View to Screen matrix.
@@ -127,7 +127,7 @@ extern (C) const(MFMatrix)* function() MFView_GetWorldToViewMatrix;
 * @see MFView_GetWorldToViewMatrix()
 * @see MFView_GetWorldToScreenMatrix()
 */
-extern (C) const(MFMatrix)* function() MFView_GetViewToScreenMatrix;
+extern (C) const(MFMatrix)* MFView_GetViewToScreenMatrix();
 
 /**
 * Gets the World to Screen matrix.
@@ -136,7 +136,7 @@ extern (C) const(MFMatrix)* function() MFView_GetViewToScreenMatrix;
 * @see MFView_GetWorldToViewMatrix()
 * @see MFView_GetViewToScreenMatrix()
 */
-extern (C) const(MFMatrix)* function() MFView_GetWorldToScreenMatrix;
+extern (C) const(MFMatrix)* MFView_GetWorldToScreenMatrix();
 
 /**
 * Builds a Local to Screen matrix.
@@ -147,7 +147,7 @@ extern (C) const(MFMatrix)* function() MFView_GetWorldToScreenMatrix;
 * @see MFView_GetWorldToScreenMatrix()
 * @see MFView_GetLocalToView()
 */
-extern (C) MFMatrix* function(const ref MFMatrix localToWorld, MFMatrix *pOutput) MFView_GetLocalToScreen;
+extern (C) MFMatrix* MFView_GetLocalToScreen(const ref MFMatrix localToWorld, MFMatrix *pOutput);
 
 /**
 * Builds a Local to View matrix.
@@ -158,35 +158,38 @@ extern (C) MFMatrix* function(const ref MFMatrix localToWorld, MFMatrix *pOutput
 * @see MFView_GetWorldToViewMatrix()
 * @see MFView_GetLocalToScreen()
 */
-extern (C) MFMatrix* function(const ref MFMatrix localToWorld, MFMatrix *pOutput) MFView_GetLocalToView;
+extern (C) MFMatrix* MFView_GetLocalToView(const ref MFMatrix localToWorld, MFMatrix *pOutput);
 
 
 // not sure how to do these, since we dont store either matrix, and we only have one available at a time...
-extern (C) void function(const ref MFVector point, MFVector *pResult, MFVector *pResultRayDir) MFView_TransformPoint2DTo3D;
-extern (C) void function(const ref MFVector point, MFVector *pResult) MFView_TransformPoint3DTo2D;
+extern (C) void MFView_TransformPoint2DTo3D(const ref MFVector point, MFVector *pResult, MFVector *pResultRayDir);
+extern (C) void MFView_TransformPoint3DTo2D(const ref MFVector point, MFVector *pResult);
 
 
 private:
 
-static this()
+version(Windows)
 {
-	FindFujiFunction!MFView_Push;
-	FindFujiFunction!MFView_Pop;
-	FindFujiFunction!MFView_SetDefault;
-	FindFujiFunction!MFView_ConfigureProjection;
-	FindFujiFunction!MFView_SetCustomProjection;
-	FindFujiFunction!MFView_SetAspectRatio;
-	FindFujiFunction!MFView_SetProjection;
-	FindFujiFunction!MFView_SetOrtho;
-	FindFujiFunction!MFView_GetOrthoRect;
-	FindFujiFunction!MFView_IsOrtho;
-	FindFujiFunction!MFView_SetCameraMatrix;
-	FindFujiFunction!MFView_GetCameraMatrix;
-	FindFujiFunction!MFView_GetWorldToViewMatrix;
-	FindFujiFunction!MFView_GetViewToScreenMatrix;
-	FindFujiFunction!MFView_GetWorldToScreenMatrix;
-	FindFujiFunction!MFView_GetLocalToScreen;
-	FindFujiFunction!MFView_GetLocalToView;
-	FindFujiFunction!MFView_TransformPoint2DTo3D;
-	FindFujiFunction!MFView_TransformPoint3DTo2D;
+	static this()
+	{
+		FindFujiFunction!MFView_Push;
+		FindFujiFunction!MFView_Pop;
+		FindFujiFunction!MFView_SetDefault;
+		FindFujiFunction!MFView_ConfigureProjection;
+		FindFujiFunction!MFView_SetCustomProjection;
+		FindFujiFunction!MFView_SetAspectRatio;
+		FindFujiFunction!MFView_SetProjection;
+		FindFujiFunction!MFView_SetOrtho;
+		FindFujiFunction!MFView_GetOrthoRect;
+		FindFujiFunction!MFView_IsOrtho;
+		FindFujiFunction!MFView_SetCameraMatrix;
+		FindFujiFunction!MFView_GetCameraMatrix;
+		FindFujiFunction!MFView_GetWorldToViewMatrix;
+		FindFujiFunction!MFView_GetViewToScreenMatrix;
+		FindFujiFunction!MFView_GetWorldToScreenMatrix;
+		FindFujiFunction!MFView_GetLocalToScreen;
+		FindFujiFunction!MFView_GetLocalToView;
+		FindFujiFunction!MFView_TransformPoint2DTo3D;
+		FindFujiFunction!MFView_TransformPoint3DTo2D;
+	}
 }

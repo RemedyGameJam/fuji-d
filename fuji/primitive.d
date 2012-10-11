@@ -30,7 +30,7 @@ enum PrimType
 * @param hint Hints to pass to the immediate renderer.
 * @return None.
 */
-extern (C) void function(uint primType, uint hint = 0) MFPrimitive;
+extern (C) void MFPrimitive(uint primType, uint hint = 0);
 
 /**
 * Begin a vertex submition block.
@@ -38,7 +38,7 @@ extern (C) void function(uint primType, uint hint = 0) MFPrimitive;
 * @param vertexCount Number of vertices to be rendered.
 * @return None.
 */
-extern (C) void function(uint vertexCount) MFBegin;
+extern (C) void MFBegin(uint vertexCount);
 
 /**
 * Set the world matrix for the primitive block.
@@ -46,7 +46,7 @@ extern (C) void function(uint vertexCount) MFBegin;
 * @param mat Matrix to set as the current world matrix.
 * @return None.
 */
-extern (C) void function(const ref MFMatrix mat) MFSetMatrix;
+extern (C) void MFSetMatrix(const ref MFMatrix mat);
 
 /**
 * Set the current vertex colour.
@@ -57,7 +57,7 @@ extern (C) void function(const ref MFMatrix mat) MFSetMatrix;
 * @param a The red component to set for all proceeding vertices.
 * @return None.
 */
-extern (C) void function(float r, float g, float b, float a = 1.0f) MFSetColour;
+extern (C) void MFSetColour(float r, float g, float b, float a = 1.0f);
 
 /**
 * Set the current vertex colour.
@@ -77,7 +77,7 @@ extern (C) void function(float r, float g, float b, float a = 1.0f) MFSetColour;
 * @param v The v coordinate to set for all proceeding vertices.
 * @return None.
 */
-extern (C) void function(float u, float v) MFSetTexCoord1;
+extern (C) void MFSetTexCoord1(float u, float v);
 
 /**
 * Set the current vertex normal.
@@ -87,7 +87,7 @@ extern (C) void function(float u, float v) MFSetTexCoord1;
 * @param z The vertex normal z component.
 * @return None.
 */
-extern (C) void function(float x, float y, float z) MFSetNormal;
+extern (C) void MFSetNormal(float x, float y, float z);
 
 /**
 * Set the current vertex normal.
@@ -109,7 +109,7 @@ extern (C) void function(float x, float y, float z) MFSetNormal;
 * @return None.
 * @remarks Setting the vertex position applies all current values to the current vertex and moves to the next vertex.
 */
-extern (C) void function(float x, float y, float z) MFSetPosition;
+extern (C) void MFSetPosition(float x, float y, float z);
 
 /**
 * Set the current vertex position.
@@ -128,7 +128,7 @@ extern (C) void function(float x, float y, float z) MFSetPosition;
 * Ends the vertex submition block.
 * @return None.
 */
-extern (C) void function() MFEnd;
+extern (C) void MFEnd();
 
 /**
 * Begin a blitter block.
@@ -136,7 +136,7 @@ extern (C) void function() MFEnd;
 * @param numBlits Number of blit's that will be performed in this block.
 * @return None.
 */
-extern (C) void function(int numBlits) MFPrimitive_BeginBlitter;
+extern (C) void MFPrimitive_BeginBlitter(int numBlits);
 
 /**
 * Blit an image or part of an image to the render target.
@@ -149,7 +149,7 @@ extern (C) void function(int numBlits) MFPrimitive_BeginBlitter;
 * @param th The height, in texels, if the image to be blitted.
 * @return None.
 */
-extern (C) void function(int x, int y, int tx, int ty, int tw, int th) MFPrimitive_Blit;
+extern (C) void MFPrimitive_Blit(int x, int y, int tx, int ty, int tw, int th);
 
 /**
 * Blit an image or part of an image to the render target with scaling.
@@ -159,7 +159,7 @@ extern (C) void function(int x, int y, int tx, int ty, int tw, int th) MFPrimiti
 * @param uvs An MFRect containing and segment of the image to blit.
 * @return None.
 */
-extern (C) void function(int x, int y, const ref MFRect uvs) MFPrimitive_BlitRect;
+extern (C) void MFPrimitive_BlitRect(int x, int y, const ref MFRect uvs);
 
 /**
 * Blit an image or part of an image to the render target with scaling.
@@ -174,7 +174,7 @@ extern (C) void function(int x, int y, const ref MFRect uvs) MFPrimitive_BlitRec
 * @param th The height, in texels, if the image to be blitted.
 * @return None.
 */
-extern (C) void function(int x, int y, int w, int h, int tx, int ty, int tw, int th) MFPrimitive_StretchBlit;
+extern (C) void MFPrimitive_StretchBlit(int x, int y, int w, int h, int tx, int ty, int tw, int th);
 
 /**
 * Blit an image or part of an image to the render target with scaling.
@@ -186,14 +186,14 @@ extern (C) void function(int x, int y, int w, int h, int tx, int ty, int tw, int
 * @param uvs An MFRect containing and segment of the image to blit.
 * @return None.
 */
-extern (C) void function(int x, int y, int w, int h, const ref MFRect uvs) MFPrimitive_StretchBlitRect;
+extern (C) void MFPrimitive_StretchBlitRect(int x, int y, int w, int h, const ref MFRect uvs);
 
 /**
 * End a blitter block.
 * Ends a blitter block.
 * @return None.
 */
-extern (C) void function() MFPrimitive_EndBlitter;
+extern (C) void MFPrimitive_EndBlitter();
 
 /**
 * Draw a textured square.
@@ -209,7 +209,7 @@ extern (C) void function() MFPrimitive_EndBlitter;
 * @param dv Destination V coordinate.
 * @return None.
 */
-extern (C) void function(float x, float y, float w, float h, const ref MFVector colour = MFVector.one, float su=0.0f, float sv=0.0f, float du=1.0f, float dv=1.0f, const ref MFMatrix mat = MFMatrix.identity) MFPrimitive_DrawQuad;
+extern (C) void MFPrimitive_DrawQuad(float x, float y, float w, float h, const ref MFVector colour = MFVector.one, float su=0.0f, float sv=0.0f, float du=1.0f, float dv=1.0f, const ref MFMatrix mat = MFMatrix.identity);
 
 /**
 * Draw a textured square.
@@ -223,7 +223,7 @@ extern (C) void function(float x, float y, float w, float h, const ref MFVector 
 * @param dv Destination V coordinate.
 * @return None.
 */
-extern (C) void function(const ref MFVector min, const ref MFVector max, const ref MFVector colour = MFVector.one, float su=0.0f, float sv=0.0f, float du=1.0f, float dv=1.0f, const ref MFMatrix mat = MFMatrix.identity) MFPrimitive_DrawQuadV;
+extern (C) void MFPrimitive_DrawQuadV(const ref MFVector min, const ref MFVector max, const ref MFVector colour = MFVector.one, float su=0.0f, float sv=0.0f, float du=1.0f, float dv=1.0f, const ref MFMatrix mat = MFMatrix.identity);
 
 /**
 * Draw an untextured square.
@@ -235,7 +235,7 @@ extern (C) void function(const ref MFVector min, const ref MFVector max, const r
 * @param colour Colour of square.
 * @return None.
 */
-extern (C) void function(float x, float y, float w, float h, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity) MFPrimitive_DrawUntexturedQuad;
+extern (C) void MFPrimitive_DrawUntexturedQuad(float x, float y, float w, float h, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity);
 
 /**
 * Draw an untextured square.
@@ -245,7 +245,7 @@ extern (C) void function(float x, float y, float w, float h, const ref MFVector 
 * @param colour Colour of square.
 * @return None.
 */
-extern (C) void function(const ref MFVector min, const ref MFVector max, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity) MFPrimitive_DrawUntexturedQuadV;
+extern (C) void MFPrimitive_DrawUntexturedQuadV(const ref MFVector min, const ref MFVector max, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity);
 
 /**
 * Draw a box.
@@ -257,7 +257,7 @@ extern (C) void function(const ref MFVector min, const ref MFVector max, const r
 * @param wireframe Renders the box in wireframe.
 * @return None.
 */
-extern (C) void function(const ref MFVector boxMin, const ref MFVector boxMax, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true) MFPrimitive_DrawBox;
+extern (C) void MFPrimitive_DrawBox(const ref MFVector boxMin, const ref MFVector boxMax, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true);
 
 /**
 * Draw a sphere.
@@ -271,7 +271,7 @@ extern (C) void function(const ref MFVector boxMin, const ref MFVector boxMax, c
 * @param wireframe Renders the sphere in wireframe.
 * @return None.
 */
-extern (C) void function(const ref MFVector position, float radius, int segments = 8, int slices = 5, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true) MFPrimitive_DrawSphere;
+extern (C) void MFPrimitive_DrawSphere(const ref MFVector position, float radius, int segments = 8, int slices = 5, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true);
 
 /**
 * Draw a capsule.
@@ -286,7 +286,7 @@ extern (C) void function(const ref MFVector position, float radius, int segments
 * @param wireframe Renders the capsule in wireframe.
 * @return None.
 */
-extern (C) void function(const ref MFVector startPoint, const ref MFVector endPoint, float radius, int segments = 8, int slices = 5, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true) MFPrimitive_DrawCapsule;
+extern (C) void MFPrimitive_DrawCapsule(const ref MFVector startPoint, const ref MFVector endPoint, float radius, int segments = 8, int slices = 5, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true);
 
 /**
 * Draw a cylinder.
@@ -301,7 +301,7 @@ extern (C) void function(const ref MFVector startPoint, const ref MFVector endPo
 * @param wireframe Renders the cylinder in wireframe.
 * @return None.
 */
-extern (C) void function(const ref MFVector startPoint, const ref MFVector endPoint, float radius, int segments = 8, int slices = 5, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true) MFPrimitive_DrawCylinder;
+extern (C) void MFPrimitive_DrawCylinder(const ref MFVector startPoint, const ref MFVector endPoint, float radius, int segments = 8, int slices = 5, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true);
 
 /**
 * Draw a disc representing a plane.
@@ -314,7 +314,7 @@ extern (C) void function(const ref MFVector startPoint, const ref MFVector endPo
 * @param wireframe Renders the plane in wireframe.
 * @return None.
 */
-extern (C) void function(const ref MFVector point, const ref MFVector normal, float span, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true) MFPrimitive_DrawPlane;
+extern (C) void MFPrimitive_DrawPlane(const ref MFVector point, const ref MFVector normal, float span, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true);
 
 /**
 * Draw a cone.
@@ -328,7 +328,7 @@ extern (C) void function(const ref MFVector point, const ref MFVector normal, fl
 * @param wireframe Renders the cone in wireframe.
 * @return None.
 */
-extern (C) void function(const ref MFVector base, const ref MFVector point, float radius, int segments = 8, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true) MFPrimitive_DrawCone;
+extern (C) void MFPrimitive_DrawCone(const ref MFVector base, const ref MFVector point, float radius, int segments = 8, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = true);
 
 /**
 * Draw an arrow.
@@ -342,7 +342,7 @@ extern (C) void function(const ref MFVector base, const ref MFVector point, floa
 * @param wireframe Renders the arrow in wireframe.
 * @return None.
 */
-extern (C) void function(const ref MFVector pos, const ref MFVector dir, float length, float radius, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = false) MFPrimitive_DrawArrow;
+extern (C) void MFPrimitive_DrawArrow(const ref MFVector pos, const ref MFVector dir, float length, float radius, const ref MFVector colour = MFVector.one, const ref MFMatrix mat = MFMatrix.identity, bool wireframe = false);
 
 /**
 * Draw a transform.
@@ -352,37 +352,40 @@ extern (C) void function(const ref MFVector pos, const ref MFVector dir, float l
 * @param lite Renders the transform as axis lines as lines instead of solid cylinders.
 * @return None.
 */
-extern (C) void function(const ref MFMatrix mat, float scale, bool lite = false) MFPrimitive_DrawTransform;
+extern (C) void MFPrimitive_DrawTransform(const ref MFMatrix mat, float scale, bool lite = false);
 
 
 private:
 
-static this()
+version(Windows)
 {
-	FindFujiFunction!MFPrimitive;
-	FindFujiFunction!MFBegin;
-	FindFujiFunction!MFSetMatrix;
-	FindFujiFunction!MFSetColour;
-	FindFujiFunction!MFSetTexCoord1;
-	FindFujiFunction!MFSetNormal;
-	FindFujiFunction!MFSetPosition;
-	FindFujiFunction!MFEnd;
-	FindFujiFunction!MFPrimitive_BeginBlitter;
-	FindFujiFunction!MFPrimitive_Blit;
-	FindFujiFunction!MFPrimitive_BlitRect;
-	FindFujiFunction!MFPrimitive_StretchBlit;
-	FindFujiFunction!MFPrimitive_StretchBlitRect;
-	FindFujiFunction!MFPrimitive_EndBlitter;
-	FindFujiFunction!MFPrimitive_DrawQuad;
-	FindFujiFunction!MFPrimitive_DrawQuadV;
-	FindFujiFunction!MFPrimitive_DrawUntexturedQuad;
-	FindFujiFunction!MFPrimitive_DrawUntexturedQuadV;
-	FindFujiFunction!MFPrimitive_DrawBox;
-	FindFujiFunction!MFPrimitive_DrawSphere;
-	FindFujiFunction!MFPrimitive_DrawCapsule;
-	FindFujiFunction!MFPrimitive_DrawCylinder;
-	FindFujiFunction!MFPrimitive_DrawPlane;
-	FindFujiFunction!MFPrimitive_DrawCone;
-	FindFujiFunction!MFPrimitive_DrawArrow;
-	FindFujiFunction!MFPrimitive_DrawTransform;
+	static this()
+	{
+		FindFujiFunction!MFPrimitive;
+		FindFujiFunction!MFBegin;
+		FindFujiFunction!MFSetMatrix;
+		FindFujiFunction!MFSetColour;
+		FindFujiFunction!MFSetTexCoord1;
+		FindFujiFunction!MFSetNormal;
+		FindFujiFunction!MFSetPosition;
+		FindFujiFunction!MFEnd;
+		FindFujiFunction!MFPrimitive_BeginBlitter;
+		FindFujiFunction!MFPrimitive_Blit;
+		FindFujiFunction!MFPrimitive_BlitRect;
+		FindFujiFunction!MFPrimitive_StretchBlit;
+		FindFujiFunction!MFPrimitive_StretchBlitRect;
+		FindFujiFunction!MFPrimitive_EndBlitter;
+		FindFujiFunction!MFPrimitive_DrawQuad;
+		FindFujiFunction!MFPrimitive_DrawQuadV;
+		FindFujiFunction!MFPrimitive_DrawUntexturedQuad;
+		FindFujiFunction!MFPrimitive_DrawUntexturedQuadV;
+		FindFujiFunction!MFPrimitive_DrawBox;
+		FindFujiFunction!MFPrimitive_DrawSphere;
+		FindFujiFunction!MFPrimitive_DrawCapsule;
+		FindFujiFunction!MFPrimitive_DrawCylinder;
+		FindFujiFunction!MFPrimitive_DrawPlane;
+		FindFujiFunction!MFPrimitive_DrawCone;
+		FindFujiFunction!MFPrimitive_DrawArrow;
+		FindFujiFunction!MFPrimitive_DrawTransform;
+	}
 }

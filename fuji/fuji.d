@@ -3,8 +3,6 @@ module fuji.fuji;
 public import fuji.types;
 public import fuji.dbg;
 
-import std.c.windows.windows;
-
 template MFDEGREES(a) { enum MFDEGREES = cast(typeof(a))(0.017453292519943295769236907684886 * a); }
 template MFRADIANS(a) { enum MFRADIANS = cast(typeof(a))(57.295779513082320876798154814105 * a); }
 template MFALIGN(x, bytes) { enum MFALIGN = (x + (bytes-1)) & ~(bytes-1); }
@@ -52,21 +50,26 @@ enum MFEndian
 	BigEndian			/**< Big Endian */
 }
 
-package void FindFujiFunction(alias F)()
+version(Windows)
 {
-	F = cast(typeof(F))GetProcAddress(fujiDll, F.stringof.ptr);
-	assert(F != null, "Unresolved external: " ~ F.stringof);
-}
+	import std.c.windows.windows;
+
+	package void FindFujiFunction(alias F)()
+	{
+		F = cast(typeof(F))GetProcAddress(fujiDll, F.stringof.ptr);
+		assert(F != null, "Unresolved external: " ~ F.stringof);
+	}
 
 private:
 
-HINSTANCE fujiDll;
+	HINSTANCE fujiDll;
 
-static this()
-{
-	fujiDll = LoadLibraryA("Fuji_Debug.dll".ptr);
-	assert(fujiDll != null, "Failed to load the Fuji_Debug.dll");
+	static this()
+	{
+		fujiDll = LoadLibraryA("Fuji_Debug.dll".ptr);
+		assert(fujiDll != null, "Failed to load the Fuji_Debug.dll");
 
-	// since we public import dbg, we need to sequence this one manually
-	HookupDebug();
+		// since we public import dbg, we need to sequence this one manually
+		HookupDebug();
+	}
 }

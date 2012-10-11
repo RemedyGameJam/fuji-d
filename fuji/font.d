@@ -40,7 +40,7 @@ enum MFFontJustify
 * @return Pointer to an MFFont structure representing the newly created font.
 * @see MFFont_Destroy()
 */
-extern (C) MFFont* function(const char *pFilename) MFFont_Create;
+extern (C) MFFont* MFFont_Create(const char *pFilename);
 
 /**
 * Destroy a font.
@@ -49,7 +49,7 @@ extern (C) MFFont* function(const char *pFilename) MFFont_Create;
 * @return None.
 * @see MFFont_Create()
 */
-extern (C) void function(MFFont *pFont) MFFont_Destroy;
+extern (C) void MFFont_Destroy(MFFont *pFont);
 
 /**
 * Get the height of a font.
@@ -58,7 +58,7 @@ extern (C) void function(MFFont *pFont) MFFont_Destroy;
 * @return The native height (in texels) of the specified font.
 * @see MFFont_Create()
 */
-extern (C) float function(MFFont *pFont) MFFont_GetFontHeight;
+extern (C) float MFFont_GetFontHeight(MFFont *pFont);
 
 /**
 * Get the width of a character.
@@ -68,7 +68,7 @@ extern (C) float function(MFFont *pFont) MFFont_GetFontHeight;
 * @return The native width (in texels) of the specified character.
 * @see MFFont_Create()
 */
-extern (C) float function(MFFont *pFont, int character) MFFont_GetCharacterWidth;
+extern (C) float MFFont_GetCharacterWidth(MFFont *pFont, int character);
 
 /**
 * Get the character offset into a string.
@@ -80,7 +80,7 @@ extern (C) float function(MFFont *pFont, int character) MFFont_GetCharacterWidth
 * @return The physical offset of the specified character in the string from the string starting position.
 * @see MFFont_GetStringWidth()
 */
-extern (C) MFVector function(MFFont *pFont, const char *pText, int charIndex, float height) MFFont_GetCharPos;
+extern (C) MFVector MFFont_GetCharPos(MFFont *pFont, const char *pText, int charIndex, float height);
 
 /**
 * Get the physical width of a string.
@@ -94,7 +94,7 @@ extern (C) MFVector function(MFFont *pFont, const char *pText, int charIndex, fl
 * @return The physical width of the specified string rendered by the specified font.
 * @see MFFont_Create()
 */
-extern (C) float function(MFFont *pFont, const char *pText, float height, float lineWidth = 0.0f, int maxLen = -1, float *pTotalHeight = null) MFFont_GetStringWidth;
+extern (C) float MFFont_GetStringWidth(MFFont *pFont, const char *pText, float height, float lineWidth = 0.0f, int maxLen = -1, float *pTotalHeight = null);
 
 /**
 * Blit a string to the screen.
@@ -107,7 +107,7 @@ extern (C) float function(MFFont *pFont, const char *pText, float height, float 
 * @param maxChars Maximum number of chars to render from the source string.
 * @return Returns 0 if there were no errors.
 */
-extern (C) int function(MFFont *pFont, int x, int y, const ref MFVector colour, const char *pText, int maxChars = -1) MFFont_BlitText;
+extern (C) int MFFont_BlitText(MFFont *pFont, int x, int y, const ref MFVector colour, const char *pText, int maxChars = -1);
 
 /**
 * Blit a formatted string to the screen.
@@ -121,7 +121,7 @@ extern (C) int function(MFFont *pFont, int x, int y, const ref MFVector colour, 
 * @return Returns 0 if there were no errors.
 * @remarks The MFFont_BlitTextf format string conforms with all the standard printf format standards.
 */
-extern (C) int function(MFFont *pFont, int x, int y, const ref MFVector colour, const char *pFormat, ...) MFFont_BlitTextf;
+extern (C) int MFFont_BlitTextf(MFFont *pFont, int x, int y, const ref MFVector colour, const char *pFormat, ...);
 
 /**
 * Render a string.
@@ -135,7 +135,7 @@ extern (C) int function(MFFont *pFont, int x, int y, const ref MFVector colour, 
 * @param ltw Local to world matrix used to render the string.
 * @return Returns the height of the text rendered.
 */
-extern (C) float function(MFFont *pFont, const ref MFVector pos, float height, const ref MFVector colour, const char *pText, int maxChars = -1, const ref MFMatrix ltw = MFMatrix.identity) MFFont_DrawText;
+extern (C) float MFFont_DrawText(MFFont *pFont, const ref MFVector pos, float height, const ref MFVector colour, const char *pText, int maxChars = -1, const ref MFMatrix ltw = MFMatrix.identity);
 
 /**
 * Render a string.
@@ -150,7 +150,7 @@ extern (C) float function(MFFont *pFont, const ref MFVector pos, float height, c
 * @param ltw Local to world matrix used to render the string.
 * @return Returns the height of the text rendered.
 */
-extern (C) float function(MFFont *pFont, float x, float y, float height, const ref MFVector colour, const char *pText, int maxChars = -1, const ref MFMatrix ltw = MFMatrix.identity) MFFont_DrawText2;
+extern (C) float MFFont_DrawText2(MFFont *pFont, float x, float y, float height, const ref MFVector colour, const char *pText, int maxChars = -1, const ref MFMatrix ltw = MFMatrix.identity);
 
 /**
 * Render a formatted string.
@@ -164,7 +164,7 @@ extern (C) float function(MFFont *pFont, float x, float y, float height, const r
 * @return Returns the height of the text rendered.
 * @remarks The MFFont_DrawTextf format string conforms with all the standard printf format standards.
 */
-extern (C) float function(MFFont *pFont, const ref MFVector pos, float height, const ref MFVector colour, const char *pFormat, ...) MFFont_DrawTextf;
+extern (C) float MFFont_DrawTextf(MFFont *pFont, const ref MFVector pos, float height, const ref MFVector colour, const char *pFormat, ...);
 
 /**
 * Render a formatted string.
@@ -179,11 +179,11 @@ extern (C) float function(MFFont *pFont, const ref MFVector pos, float height, c
 * @return Returns the height of the text rendered.
 * @remarks The MFFont_DrawTextf format string conforms with all the standard printf format standards.
 */
-extern (C) float function(MFFont *pFont, float x, float y, float height, const ref MFVector colour, const char *pFormat, ...) MFFont_DrawText2f;
+extern (C) float MFFont_DrawText2f(MFFont *pFont, float x, float y, float height, const ref MFVector colour, const char *pFormat, ...);
 
-extern (C) float function(MFFont *pFont, const char *pText, const ref MFVector pos, float boxWidth, float boxHeight, MFFontJustify justification, float textHeight, const ref MFVector color, int numChars = -1, const ref MFMatrix ltw = MFMatrix.identity) MFFont_DrawTextJustified;
+extern (C) float MFFont_DrawTextJustified(MFFont *pFont, const char *pText, const ref MFVector pos, float boxWidth, float boxHeight, MFFontJustify justification, float textHeight, const ref MFVector color, int numChars = -1, const ref MFMatrix ltw = MFMatrix.identity);
 
-extern (C) float function(MFFont *pFont, const char *pText, const ref MFVector pos, MFFontJustify justification, float lineWidth, float textHeight, const ref MFVector color, int numChars = -1, const ref MFMatrix ltw = MFMatrix.identity) MFFont_DrawTextAnchored;
+extern (C) float MFFont_DrawTextAnchored(MFFont *pFont, const char *pText, const ref MFVector pos, MFFontJustify justification, float lineWidth, float textHeight, const ref MFVector color, int numChars = -1, const ref MFMatrix ltw = MFMatrix.identity);
 
 
 /**
@@ -191,26 +191,29 @@ extern (C) float function(MFFont *pFont, const char *pText, const ref MFVector p
 * Gets a pointer to the debug font.
 * @return Returns a pointer to the debug font.
 */
-extern (C) MFFont* function() MFFont_GetDebugFont;
+extern (C) MFFont* MFFont_GetDebugFont();
 
 
 private:
 
-static this()
+version(Windows)
 {
-	FindFujiFunction!MFFont_Create;
-	FindFujiFunction!MFFont_Destroy;
-	FindFujiFunction!MFFont_GetFontHeight;
-	FindFujiFunction!MFFont_GetCharacterWidth;
-	FindFujiFunction!MFFont_GetCharPos;
-	FindFujiFunction!MFFont_GetStringWidth;
-	FindFujiFunction!MFFont_BlitText;
-	FindFujiFunction!MFFont_BlitTextf;
-	FindFujiFunction!MFFont_DrawText;
-	FindFujiFunction!MFFont_DrawText2;
-	FindFujiFunction!MFFont_DrawTextf;
-	FindFujiFunction!MFFont_DrawText2f;
-	FindFujiFunction!MFFont_DrawTextJustified;
-	FindFujiFunction!MFFont_DrawTextAnchored;
-	FindFujiFunction!MFFont_GetDebugFont;
+	static this()
+	{
+		FindFujiFunction!MFFont_Create;
+		FindFujiFunction!MFFont_Destroy;
+		FindFujiFunction!MFFont_GetFontHeight;
+		FindFujiFunction!MFFont_GetCharacterWidth;
+		FindFujiFunction!MFFont_GetCharPos;
+		FindFujiFunction!MFFont_GetStringWidth;
+		FindFujiFunction!MFFont_BlitText;
+		FindFujiFunction!MFFont_BlitTextf;
+		FindFujiFunction!MFFont_DrawText;
+		FindFujiFunction!MFFont_DrawText2;
+		FindFujiFunction!MFFont_DrawTextf;
+		FindFujiFunction!MFFont_DrawText2f;
+		FindFujiFunction!MFFont_DrawTextJustified;
+		FindFujiFunction!MFFont_DrawTextAnchored;
+		FindFujiFunction!MFFont_GetDebugFont;
+	}
 }
