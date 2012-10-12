@@ -132,7 +132,7 @@ extern (C) void MFMaterial_RemoveDefinitions(const(char)* pName);
 * @param pName Name of material to create.
 * @return Returns a new instance of the target material.
 */
-extern (C) MFMaterial*	MFMaterial_Create(const(char)* pName);
+extern (C) MFMaterial* MFMaterial_Create(const(char)* pName);
 
 /**
 * Destroy a material instance.
@@ -149,7 +149,7 @@ extern (C) int MFMaterial_Destroy(MFMaterial* pMaterial);
 * @return Returns a pointer to the material. If the material was not found, NULL is returned.
 * @remarks Note that MFMaterial_Find does NOT increment the materials reference count so you do not need to destroy the pointer returned by MFMaterial_Find.
 */
-extern (C) MFMaterial*	MFMaterial_Find(const(char)* pName);
+extern (C) MFMaterial* MFMaterial_Find(const(char)* pName);
 
 /**
 * Get a pointer to a stock material.
@@ -157,7 +157,7 @@ extern (C) MFMaterial*	MFMaterial_Find(const(char)* pName);
 * @param materialIdentifier Identifier of the stock material.
 * @return Returns a pointer to the specified stock material.
 */
-extern (C) MFMaterial*	MFMaterial_GetStockMaterial(MFStockMaterials materialIdentifier);
+extern (C) MFMaterial* MFMaterial_GetStockMaterial(MFStockMaterials materialIdentifier);
 
 /**
 * Set the current active material.
@@ -172,7 +172,7 @@ extern (C) void MFMaterial_SetMaterial(MFMaterial* pMaterial);
 * Gets the current active material.
 * @return Pointer to the current active material.
 */
-extern (C) MFMaterial*	MFMaterial_GetCurrent();
+extern (C) MFMaterial* MFMaterial_GetCurrent();
 
 /**
 * Get a materials name.
@@ -198,7 +198,7 @@ extern (C) int MFMaterial_GetNumParameters(MFMaterial* pMaterial);
 * @param parameterIndex Parameter index.
 * @return Returns a string representing the parameter name.
 */
-extern (C) const(char)*	MFMaterial_GetParameterName(MFMaterial* pMaterial, int parameterIndex);
+extern (C) const(char)* MFMaterial_GetParameterName(MFMaterial* pMaterial, int parameterIndex);
 
 /**
 * Get the index of a parameter from a parameter name.
@@ -248,7 +248,7 @@ extern (C) size_t MFMaterial_GetParameter(MFMaterial* pMaterial, int parameterIn
 */
 /+inline+/ size_t MFMaterial_GetParameterI(MFMaterial* pMaterial, int parameterIndex, int argIndex)
 {
-	return MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex);
+	return MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex, null);
 }
 
 /**
@@ -304,7 +304,7 @@ extern (C) size_t MFMaterial_GetParameter(MFMaterial* pMaterial, int parameterIn
 */
 /+inline+/ MFTexture* MFMaterial_GetParameterT(MFMaterial* pMaterial, int parameterIndex, int argIndex)
 {
-	return cast(MFTexture*)MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex);
+	return cast(MFTexture*)MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex, null);
 }
 
 /**
