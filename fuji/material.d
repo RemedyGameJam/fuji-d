@@ -248,7 +248,7 @@ extern (C) size_t function(MFMaterial* pMaterial, int parameterIndex, int argInd
 */
 /+inline+/ size_t MFMaterial_GetParameterI(MFMaterial* pMaterial, int parameterIndex, int argIndex)
 {
-	return MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex);
+	return MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex, null);
 }
 
 /**
@@ -304,7 +304,7 @@ extern (C) size_t function(MFMaterial* pMaterial, int parameterIndex, int argInd
 */
 /+inline+/ MFTexture* MFMaterial_GetParameterT(MFMaterial* pMaterial, int parameterIndex, int argIndex)
 {
-	return cast(MFTexture*)MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex);
+	return cast(MFTexture*)MFMaterial_GetParameter(pMaterial, parameterIndex, argIndex, null);
 }
 
 /**
