@@ -1,7 +1,7 @@
 module fuji.sound;
 
 public import fuji.fuji;
-public import fuji.matrix;
+import fuji.matrix;
 
 /**
 * @struct MFSound
