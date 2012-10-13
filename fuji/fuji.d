@@ -5,8 +5,8 @@ public import fuji.dbg;
 
 import std.c.windows.windows;
 
-template MFDEGREES(a) { enum MFDEGREES = cast(typeof(a))(0.017453292519943295769236907684886 * a); }
-template MFRADIANS(a) { enum MFRADIANS = cast(typeof(a))(57.295779513082320876798154814105 * a); }
+template MFDeg2Rad(alias a) { enum MFDeg2Rad = 0.017453292519943295769236907684886 * a; }
+template MFRad2Deg(alias a) { enum MFRad2Deg = 57.295779513082320876798154814105 * a; }
 template MFALIGN(x, bytes) { enum MFALIGN = (x + (bytes-1)) & ~(bytes-1); }
 template MFALIGN16(x) { enum MFALIGN16 = MFALIGN!(x, 16); }
 template MFUNFLAG(x, y) { enum MFUNFLAG = x & ~y; }
