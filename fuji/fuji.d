@@ -3,13 +3,13 @@ module fuji.fuji;
 public import fuji.types;
 public import fuji.dbg;
 
-template MFDEGREES(a) { enum MFDEGREES = cast(typeof(a))(0.017453292519943295769236907684886 * a); }
-template MFRADIANS(a) { enum MFRADIANS = cast(typeof(a))(57.295779513082320876798154814105 * a); }
-template MFALIGN(x, bytes) { enum MFALIGN = (x + (bytes-1)) & ~(bytes-1); }
-template MFALIGN16(x) { enum MFALIGN16 = MFALIGN!(x, 16); }
-template MFUNFLAG(x, y) { enum MFUNFLAG = x & ~y; }
-template MFFLAG(x, y) { enum MFFLAG = x | y; }
-template MFBIT(alias x) { enum MFBIT = 1 << x; }
+template MFDeg2Rad(alias a) { enum MFDeg2Rad = 0.017453292519943295769236907684886 * a; }
+template MFRad2Deg(alias a) { enum MFRad2Deg = 57.295779513082320876798154814105 * a; }
+template MFAlign(alias x, alias bytes) { enum MFAlign = (x + (bytes-1)) & ~(bytes-1); }
+template MFAlign16(alias x) { enum MFAlign16 = MFAlign!(x, 16); }
+template MFUnflag(alias x, alias y) { enum MFUnflag = x & ~y; }
+template MFFlag(alias x, alias y) { enum MFFlag = x | y; }
+template MFBit(alias x) { enum MFBit = 1 << x; }
 
 /**
 * Defines a Fuji platform at runtime.
