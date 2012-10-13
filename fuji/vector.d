@@ -1,9 +1,8 @@
 module fuji.vector;
 
 import fuji.matrix;
-
 import std.math;
-import std.conv;
+//import std.conv;
 
 
 struct MFVector
@@ -34,14 +33,14 @@ struct MFVector
 	MFVector opBinaryRight( string op )( float f ) const pure nothrow		if( op == "/" ) { return MFVector( f / x, f / y, f / z, f / w ); }
 	MFVector opBinaryRight( string op )( float f ) const pure nothrow		if( op == "%" ) { return MFVector( f % x, f % y, f % z, f % w ); }
 
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "+" ) { this = this + v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "-" ) { this = this - v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "*" ) { this = this * v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "/" ) { this = this / v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "%" ) { this = this % v; return this; }
-	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "*" ) { this = this * v; return this; }
-	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "/" ) { this = this / v; return this; }
-	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "%" ) { this = this % v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "+=" ) { this = this + v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "-=" ) { this = this - v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "*=" ) { this = this * v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "/=" ) { this = this / v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "%=" ) { this = this % v; return this; }
+	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "*=" ) { this = this * v; return this; }
+	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "/=" ) { this = this / v; return this; }
+	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "%=" ) { this = this % v; return this; }
 
 	MFVector rcp() const pure nothrow					{ return 1.0 / this; }
 
