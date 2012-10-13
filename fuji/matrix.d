@@ -33,15 +33,15 @@ struct MFMatrix
 	}
 +/
 
-	Matrix4 opBinary( string op )( float s ) const pure nothrow			if( op == "*" )
+	MFMatrix opBinary( string op )( float s ) const pure 			if( op == "*" )
 	{
-		Matrix4 m = this;
+		MFMatrix m = this;
 		m.m[] *= s;
 		return m;
 	}
-	Matrix4 opBinaryRight( string op )( float s ) const pure nothrow	if( op == "*" )
+	MFMatrix opBinaryRight( string op )( float s ) const pure 	if( op == "*" )
 	{
-		Matrix4 m = this;
+		MFMatrix m = this;
 		m.m[] *= s;
 		return m;
 	}
@@ -105,9 +105,9 @@ auto mul( T0, T1 )( ref const(T0) a, ref const(T1) b ) pure nothrow if( IsMatrix
 		return m;
 	}
 /+
-	else static if( is( a == Matrix4 ) && is( b == Matrix4x3 ) )
+	else static if( is( a == MFMatrix ) && is( b == MFMatrixx3 ) )
 	{
-		Matrix4 m = void;
+		MFMatrix m = void;
 		m.m[0]  = a.m[0]*b.m[0]  + a.m[1]*b.m[3]  + a.m[2]*b.m[6]  + a.m[3]*b.m[9];
 		m.m[1]  = a.m[0]*b.m[1]  + a.m[1]*b.m[4]  + a.m[2]*b.m[7]  + a.m[3]*b.m[10];
 		m.m[2]  = a.m[0]*b.m[2]  + a.m[1]*b.m[5]  + a.m[2]*b.m[8]  + a.m[3]*b.m[11];
@@ -126,9 +126,9 @@ auto mul( T0, T1 )( ref const(T0) a, ref const(T1) b ) pure nothrow if( IsMatrix
 		m.m[15] = a.m[15];
 		return m;
 	}
-	else static if( is( a == Matrix4x3 ) && is( b == Matrix4 ) )
+	else static if( is( a == MFMatrixx3 ) && is( b == MFMatrix ) )
 	{
-		Matrix4 m = void;
+		MFMatrix m = void;
 		m.m[0]  = a.m[0]*b.m[0] + a.m[1]*b.m[4]  + a.m[2]*b.m[8];
 		m.m[1]  = a.m[0]*b.m[1] + a.m[1]*b.m[5]  + a.m[2]*b.m[9];
 		m.m[2]  = a.m[0]*b.m[2] + a.m[1]*b.m[6]  + a.m[2]*b.m[10];
@@ -147,9 +147,9 @@ auto mul( T0, T1 )( ref const(T0) a, ref const(T1) b ) pure nothrow if( IsMatrix
 		m.m[15] = a.m[9]*b.m[3] + a.m[10]*b.m[7] + a.m[11]*b.m[11] + b.m[15];
 		return m;
 	}
-	else static if( is( a == Matrix4 ) && is( b == Matrix3 ) )
+	else static if( is( a == MFMatrix ) && is( b == Matrix3 ) )
 	{
-		Matrix4 m = void;
+		MFMatrix m = void;
 		m.m[0]  = a.m[0]*b.m[0]  + a.m[1]*b.m[3]  + a.m[2]*b.m[6];
 		m.m[1]  = a.m[0]*b.m[1]  + a.m[1]*b.m[4]  + a.m[2]*b.m[7];
 		m.m[2]  = a.m[0]*b.m[2]  + a.m[1]*b.m[5]  + a.m[2]*b.m[8];
@@ -168,9 +168,9 @@ auto mul( T0, T1 )( ref const(T0) a, ref const(T1) b ) pure nothrow if( IsMatrix
 		m.m[15] = a.m[15];
 		return m;
 	}
-	else static if( is( a == Matrix3 ) && is( b == Matrix4 ) )
+	else static if( is( a == Matrix3 ) && is( b == MFMatrix ) )
 	{
-		Matrix4 m = void;
+		MFMatrix m = void;
 		m.m[0]  = a.m[0]*b.m[0] + a.m[1]*b.m[4]  + a.m[2]*b.m[8];
 		m.m[1]  = a.m[0]*b.m[1] + a.m[1]*b.m[5]  + a.m[2]*b.m[9];
 		m.m[2]  = a.m[0]*b.m[2] + a.m[1]*b.m[6]  + a.m[2]*b.m[10];
@@ -189,9 +189,9 @@ auto mul( T0, T1 )( ref const(T0) a, ref const(T1) b ) pure nothrow if( IsMatrix
 		m.m[15] = b.m[15];
 		return m;
 	}
-	else static if( is( a == Matrix4x3 ) && is( b == Matrix4x3 ) )
+	else static if( is( a == MFMatrixx3 ) && is( b == MFMatrixx3 ) )
 	{
-		Matrix4x3 m = void;
+		MFMatrixx3 m = void;
 		m.m[0]  = a.m[0]*b.m[0] + a.m[1]*b.m[3]  + a.m[2]*b.m[6];
 		m.m[1]  = a.m[0]*b.m[1] + a.m[1]*b.m[4]  + a.m[2]*b.m[7];
 		m.m[2]  = a.m[0]*b.m[2] + a.m[1]*b.m[5]  + a.m[2]*b.m[8];
@@ -206,9 +206,9 @@ auto mul( T0, T1 )( ref const(T0) a, ref const(T1) b ) pure nothrow if( IsMatrix
 		m.m[11] = a.m[9]*b.m[2] + a.m[10]*b.m[5] + a.m[11]*b.m[8] + b.m[11];
 		return m;
 	}
-	else static if( is( a == Matrix4x3 ) && is( b == Matrix3 ) )
+	else static if( is( a == MFMatrixx3 ) && is( b == Matrix3 ) )
 	{
-		Matrix4x3 m = void;
+		MFMatrixx3 m = void;
 		m.m[0]  = a.m[0]*b.m[0] + a.m[1]*b.m[3]  + a.m[2]*b.m[6];
 		m.m[1]  = a.m[0]*b.m[1] + a.m[1]*b.m[4]  + a.m[2]*b.m[7];
 		m.m[2]  = a.m[0]*b.m[2] + a.m[1]*b.m[5]  + a.m[2]*b.m[8];
@@ -223,9 +223,9 @@ auto mul( T0, T1 )( ref const(T0) a, ref const(T1) b ) pure nothrow if( IsMatrix
 		m.m[11] = a.m[9]*b.m[2] + a.m[10]*b.m[5] + a.m[11]*b.m[8];
 		return m;
 	}
-	else static if( is( a == Matrix3 ) && is( b == Matrix4x3 ) )
+	else static if( is( a == Matrix3 ) && is( b == MFMatrixx3 ) )
 	{
-		Matrix4x3 m = void;
+		MFMatrixx3 m = void;
 		m.m[0]  = a.m[0]*b.m[0] + a.m[1]*b.m[3]  + a.m[2]*b.m[6];
 		m.m[1]  = a.m[0]*b.m[1] + a.m[1]*b.m[4]  + a.m[2]*b.m[7];
 		m.m[2]  = a.m[0]*b.m[2] + a.m[1]*b.m[5]  + a.m[2]*b.m[8];
