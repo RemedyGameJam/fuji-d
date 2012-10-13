@@ -1,9 +1,8 @@
 module fuji.vector;
 
 import fuji.matrix;
-
 import std.math;
-import std.conv;
+//import std.conv;
 
 
 struct MFVector
@@ -140,7 +139,7 @@ MFVector madd(MFVector v1, MFVector v2, MFVector v3) pure nothrow
 
 MFVector lerp(int width)(MFVector v1, MFVector v2, float t) pure nothrow
 {
-	MFVector r = v;
+	MFVector r = v1;
 	static if(width >= 2)
 	{
 		r.x = v1.x + (v2.x - v1.x)*t;
