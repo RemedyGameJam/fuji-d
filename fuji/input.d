@@ -722,7 +722,7 @@ static this()
 	FindFujiFunction!MFInput_ReadMouseDelta;
 	FindFujiFunction!MFInput_SetMouseMode;
 	FindFujiFunction!MFInput_SetMouseAcceleration;
-	FindFujiFunction!MFInput_SetMouseClippingRect;
+//	FindFujiFunction!MFInput_SetMouseClippingRect;
 	FindFujiFunction!MFInput_EnumerateString;
 	FindFujiFunction!MFInput_SetDeadZone;
 	FindFujiFunction!MFInput_GetDeadZone;
