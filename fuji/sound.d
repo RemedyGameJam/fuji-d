@@ -241,7 +241,7 @@ extern (C) void function(MFSound* pSound, MFSoundInfo *pInfo) MFSound_GetSoundIn
 enum MFAudioStreamFlags
 {
 	QueryLength = MFBIT!0,		/**< Allows the user to query the stream length. */
-	AllowSeeking = MFBIT!1,	/**< Allows seeking within the stream. */
+	AllowSeeking = MFBIT!1,		/**< Allows seeking within the stream. */
 	AllowBuffering = MFBIT!2,	/**< Allows buffering of the compressed data if the driver chooses. (May use a lot of memory) */
 	DecodeOnly = MFBIT!3		/**< The stream is created for decode only. Streams created with the MFASF_DecodeOnly flag may not be played. */
 }

@@ -33,14 +33,14 @@ struct MFVector
 	MFVector opBinaryRight( string op )( float f ) const pure nothrow		if( op == "/" ) { return MFVector( f / x, f / y, f / z, f / w ); }
 	MFVector opBinaryRight( string op )( float f ) const pure nothrow		if( op == "%" ) { return MFVector( f % x, f % y, f % z, f % w ); }
 
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "+=" ) { this = this + v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "-=" ) { this = this - v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "*=" ) { this = this * v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "/=" ) { this = this / v; return this; }
-	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "%=" ) { this = this % v; return this; }
-	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "*=" ) { this = this * v; return this; }
-	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "/=" ) { this = this / v; return this; }
-	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "%=" ) { this = this % v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "+" ) { this = this + v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "-" ) { this = this - v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "*" ) { this = this * v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "/" ) { this = this / v; return this; }
+	MFVector opOpAssign( string op )( const MFVector v ) pure nothrow		if( op == "%" ) { this = this % v; return this; }
+	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "*" ) { this = this * v; return this; }
+	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "/" ) { this = this / v; return this; }
+	MFVector opOpAssign( string op )( float v ) pure nothrow				if( op == "%" ) { this = this % v; return this; }
 
 	MFVector rcp() const pure nothrow					{ return 1.0 / this; }
 
@@ -139,7 +139,7 @@ MFVector madd(MFVector v1, MFVector v2, MFVector v3) pure nothrow
 
 MFVector lerp(int width)(MFVector v1, MFVector v2, float t) pure nothrow
 {
-	MFVector r = v;
+	MFVector r = v1;
 	static if(width >= 2)
 	{
 		r.x = v1.x + (v2.x - v1.x)*t;
