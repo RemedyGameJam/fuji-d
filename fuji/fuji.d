@@ -64,7 +64,10 @@ HINSTANCE fujiDll;
 
 static this()
 {
-	fujiDll = LoadLibraryA("Fuji_Debug.dll".ptr);
+	version(Debug)
+		fujiDll = LoadLibraryA("Fuji_Debug.dll".ptr);
+	else
+		fujiDll = LoadLibraryA("Fuji_Release.dll".ptr);
 	assert(fujiDll != null, "Failed to load the Fuji_Debug.dll");
 
 	// since we public import dbg, we need to sequence this one manually
