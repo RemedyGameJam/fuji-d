@@ -3,9 +3,9 @@ module fuji.fs.native;
 public import fuji.filesystem;
 
 /**
-* Open native file structure.
-* Information required to open a native file.
-*/
+ * Open native file structure.
+ * Information required to open a native file.
+ */
 struct MFOpenDataNative
 {
 	MFOpenData base = MFOpenData(typeof(this).sizeof, MFOpenData.init.openFlags);
@@ -15,9 +15,9 @@ struct MFOpenDataNative
 }
 
 /**
-* Mount native filesystem structure.
-* Information required to mount a native filesystem.
-*/
+ * Mount native filesystem structure.
+ * Information required to mount a native filesystem.
+ */
 struct MFMountDataNative
 {
 	MFMountData base = MFMountData(typeof(this).sizeof, MFMountData.init.flags, MFMountData.init.pMountpoint, MFMountData.init.priority);
@@ -25,3 +25,4 @@ struct MFMountDataNative
 
 	const(char)* pPath;	/**< Path in the native filsystem to mount. */
 }
+
