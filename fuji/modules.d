@@ -1,4 +1,4 @@
-module fuji.module;
+module fuji.modules;
 
 /**
  * Module init completion status.
@@ -40,7 +40,7 @@ extern (C) int MFModule_GetNumModules();
 
 extern (C) int MFModule_GetModuleID(const(char*) pName);
 
-extern (C) const char *MFModule_GetModuleName(int id);
+extern (C) const(char*) MFModule_GetModuleName(int id);
 
 extern (C) bool MFModule_IsModuleInitialised(int id);
 extern (C) bool MFModule_DidModuleInitialisationFail(int id);
