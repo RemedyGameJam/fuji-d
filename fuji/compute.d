@@ -45,11 +45,11 @@ extern (C) MFComputeKernel* MFCompute_CreateKernel(MFComputeProgram* pProgram, c
 
 extern (C) void MFCompute_DestroyKernel(MFComputeKernel* pKernel);
 
-extern (C) bool MFCompute_SetKernelArgBuffer(MFComputeKernel* pKernel, uint32 arg_index, MFComputeBuffer* pBuffer);
+extern (C) bool MFCompute_SetKernelArgBuffer(MFComputeKernel* pKernel, uint arg_index, MFComputeBuffer* pBuffer);
 
-extern (C) bool MFCompute_SetKernelArg(MFComputeKernel* pKernel, uint32 arg_index, uint32 arg_size, const(void*) arg_value);
+extern (C) bool MFCompute_SetKernelArg(MFComputeKernel* pKernel, uint arg_index, uint arg_size, const(void*) arg_value);
 
-extern (C) void MFCompute_Enqueue(MFComputeKernel* pKernel, uint32 workItems);
+extern (C) void MFCompute_Enqueue(MFComputeKernel* pKernel, uint workItems);
 
-extern (C) void MFCompute_ReadBuffer(MFComputeBuffer* pBuffer, uint32 size, void* ptr);
+extern (C) void MFCompute_ReadBuffer(MFComputeBuffer* pBuffer, uint size, void* ptr);
 

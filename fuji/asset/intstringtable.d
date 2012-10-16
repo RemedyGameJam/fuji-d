@@ -1,7 +1,7 @@
 module fuji.asset.intstringtable;
 
 import fuji.fuji;
-import fuji.translation
+import fuji.translation;
 
 enum MFIntStringTableFormat
 {

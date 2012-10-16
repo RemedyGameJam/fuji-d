@@ -1,6 +1,6 @@
 module fuji.socket;
 
-enum MFSOCKET_ERROR = -1
+enum MFSOCKET_ERROR = -1;
 
 /**
  * Represents a Fuji socket.
@@ -135,16 +135,19 @@ struct MFInet6Address
  */
 struct MFSocketAddress
 {
-	int cbSize;				/**< Sive of the structure */
-	MFAddressFamily family;	/**< Address family for the socket address */
+	int cbSize = typeof(this).sizeof;						/**< Sive of the structure */
+	MFAddressFamily family = MFAddressFamily.Unspecified;	/**< Address family for the socket address */
 }
 
 /**
  * Inet Socket Address.
  * Represents an Inet socket address. This structure is derived from MFSocketAddress.
  */
-struct MFSocketAddressInet : public MFSocketAddress
+struct MFSocketAddressInet
 {
+	MFSocketAddress base = MFSocketAddress(typeof(this).sizeof, MFAddressFamily.Inet);
+	alias base this;
+
 	int port;				/**< Internet Protocol (IP) port. */
 	MFInetAddress address;	/**< IP address in network byte order. */
 }
@@ -153,8 +156,11 @@ struct MFSocketAddressInet : public MFSocketAddress
  * Inet6 Socket Address.
  * Represents an Inet6 socket address. This structure is derived from MFSocketAddress.
  */
-struct MFSocketAddressInet6 : public MFSocketAddress
+struct MFSocketAddressInet6
 {
+	MFSocketAddress base = MFSocketAddress(typeof(this).sizeof, MFAddressFamily.Inet6);
+	alias base this;
+
 	int port;				/**< Transport-level port number */
 	uint flowInfo;			/**< Ipv6 flow information */
 	MFInet6Address address;	/**< IPv6 address */
@@ -171,7 +177,7 @@ struct MFAddressInfo
 	MFAddressFamily family;		/**< Protocol family, such as Inet. */
 	MFSocketType type;			/**< Socket type, such as Raw, Stream, or Datagram. */
 	MFSocketProtocol protocol;	/**< Protocol, such as TCP or UDP. For protocols other than IPv4 and IPv6, set ai_protocol to zero. */
-	const(char* pCanonName;	/**< Canonical name for the host. */
+	const(char*) pCanonName;	/**< Canonical name for the host. */
 	const(MFSocketAddress*) pAddress;	/**< Pointer to an MFSocketAddress structure. */
 
 	MFAddressInfo* pNext;		/**< Pointer to the next structure in a linked list. This parameter is set to NULL in the last MFAddressInfo structure of a linked list. */

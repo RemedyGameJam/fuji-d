@@ -48,7 +48,7 @@ enum MFLanguage
  * @return Returns a string containing the name of the language.
  * @remarks If \a native is true, the returned string may require characters from an extended font page.
  */
-extern (C) const char* MFTranslation_GetLanguageName(MFLanguage language, bool native = false);
+extern (C) const(char*) MFTranslation_GetLanguageName(MFLanguage language, bool native = false);
 
 /**
  * Get the system default language.

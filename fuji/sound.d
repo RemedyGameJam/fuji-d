@@ -38,8 +38,8 @@ struct MFSoundInfo
 */
 enum MFSoundFlagsInternal
 {
-	Dynamic = MFBIT!0,		/**< Specifies that the sound will be a dynamic sound buffer. */
-	Circular = MFBIT!1		/**< Specifies that the sound buffer is a circular buffer to be used for streaming. */
+	Dynamic = MFBit!0,		/**< Specifies that the sound will be a dynamic sound buffer. */
+	Circular = MFBit!1		/**< Specifies that the sound buffer is a circular buffer to be used for streaming. */
 }
 
 /**
@@ -48,9 +48,9 @@ enum MFSoundFlagsInternal
 */
 enum MFPlayFlags
 {
-	Looping = MFBIT!0,		/**< Specifies that the sound is a looping sound. */
-	_3D = MFBIT!1,			/**< Specifies that the sound should be played in 3d space. */
-	BeginPaused = MFBIT!2,	/**< Specifies that the voice will be created paused. */
+	Looping = MFBit!0,		/**< Specifies that the sound is a looping sound. */
+	_3D = MFBit!1,			/**< Specifies that the sound should be played in 3d space. */
+	BeginPaused = MFBit!2,	/**< Specifies that the voice will be created paused. */
 
 	Reserved = 0x7 << 28	/**< Bit mask is reserved for internal use. */
 }
@@ -240,10 +240,10 @@ extern (C) void MFSound_GetSoundInfo(MFSound* pSound, MFSoundInfo *pInfo);
 */
 enum MFAudioStreamFlags
 {
-	QueryLength = MFBIT!0,		/**< Allows the user to query the stream length. */
-	AllowSeeking = MFBIT!1,		/**< Allows seeking within the stream. */
-	AllowBuffering = MFBIT!2,	/**< Allows buffering of the compressed data if the driver chooses. (May use a lot of memory) */
-	DecodeOnly = MFBIT!3		/**< The stream is created for decode only. Streams created with the MFASF_DecodeOnly flag may not be played. */
+	QueryLength = MFBit!0,		/**< Allows the user to query the stream length. */
+	AllowSeeking = MFBit!1,		/**< Allows seeking within the stream. */
+	AllowBuffering = MFBit!2,	/**< Allows buffering of the compressed data if the driver chooses. (May use a lot of memory) */
+	DecodeOnly = MFBit!3		/**< The stream is created for decode only. Streams created with the MFASF_DecodeOnly flag may not be played. */
 }
 
 /**

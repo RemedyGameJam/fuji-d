@@ -1,5 +1,7 @@
 module fuji.vertex;
 
+import fuji.vector;
+
 /**
  * @struct MFVertexDeclaration
  * Represents the layout of a vertex buffer.

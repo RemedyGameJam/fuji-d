@@ -102,12 +102,12 @@ enum TextureFlags
 {
 	// Internal Flags
 	AlphaMask = 0x3,				/**< Alpha mask. 0 = Opaque, 1 = Full Alpha, 3 = 1bit Alpha */
-	PreMultipliedAlpha = MFBIT!2,	/**< Pre-multiplied alpha */
-	Swizzled = MFBIT!3,				/**< Texture data is swizzled for the platform */
-	RenderTarget = MFBIT!4,			/**< Texture is a render target */
+	PreMultipliedAlpha = MFBit!2,	/**< Pre-multiplied alpha */
+	Swizzled = MFBit!3,				/**< Texture data is swizzled for the platform */
+	RenderTarget = MFBit!4,			/**< Texture is a render target */
 
 	// User Flags
-	CopyMemory = MFBIT!8			/**< Takes a copy of the image buffer when calling MFTexture_CreateFromRawData() */
+	CopyMemory = MFBit!8			/**< Takes a copy of the image buffer when calling MFTexture_CreateFromRawData() */
 }
 
 /**
@@ -268,7 +268,7 @@ extern (C) const(char)* MFTexture_GetFormatString(int format);
 * Gets all platforms that support the specified texture format in hardware.
 * Gets a variable representing which platforms support the specified texture format in hardware.
 * @param format Format to test for hardware support.
-* @return Result is a bitfield where each bit represents hardware support for a specific platform. Platform support can be tested, for example, using: ( result & MFBIT(FP_PC) ) != 0.
+* @return Result is a bitfield where each bit represents hardware support for a specific platform. Platform support can be tested, for example, using: ( result & MFBit(FP_PC) ) != 0.
 * @see MFTexture_GetFormatString(), MFTexture_GetBitsPerPixel()
 */
 extern (C) uint MFTexture_GetPlatformAvailability(int format);

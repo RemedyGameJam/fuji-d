@@ -254,10 +254,10 @@ enum MFMountPriority
 */
 enum MFFileAttributes : uint
 {
-	Directory = MFBIT!0,	/**< File is a directory */
-	SymLink = MFBIT!1,		/**< File is a symbolic link */
-	Hidden = MFBIT!2,		/**< File is hidden */
-	ReadOnly = MFBIT!3,		/**< File is read only */
+	Directory = MFBit!0,	/**< File is a directory */
+	SymLink = MFBit!1,		/**< File is a symbolic link */
+	Hidden = MFBit!2,		/**< File is hidden */
+	ReadOnly = MFBit!3,		/**< File is read only */
 }
 
 /**

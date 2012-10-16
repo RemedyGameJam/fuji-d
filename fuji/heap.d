@@ -77,12 +77,12 @@ void* MFHeap_AllocAndZero(size_t bytes, MFHeap* pHeap = null)
  */
 void* MFHeap_Realloc(void* pMem, size_t bytes)
 {
-	return MFHeap_AllocAndZeroInternal(pMem, bytes);
+	return MFHeap_ReallocInternal(pMem, bytes);
 }
 
 void* MFHeap_TAlloc(size_t bytes, MFHeap* pHeap = null)
 {
-	return MFHeap_AllocInternal(bytes, MFHeap_GetHeap(ActiveTemporary));
+	return MFHeap_AllocInternal(bytes, MFHeap_GetHeap(MFHeapType.ActiveTemporary));
 }
 
 // *** document me!! ***

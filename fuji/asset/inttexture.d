@@ -1,6 +1,7 @@
 module fuji.asset.inttexture;
 
 import fuji.fuji;
+import fuji.texture;
 
 enum MFIntTextureFormat
 {
@@ -45,11 +46,11 @@ extern (C) MFIntTexture* MFIntTexture_CreateFromFileInMemory(const(void*) pMemor
 
 extern (C) void MFIntTexture_Destroy(MFIntTexture* pTexture);
 
-extern (C) void MFIntTexture_CreateRuntimeData(MFIntTexture* pTexture, MFTextureTemplateData** ppTemplateData, size_t* pSize, MFPlatform platform, uint flags = 0, MFTextureFormat targetFormat = MFIntTextureFormat.Unknown);
+extern (C) void MFIntTexture_CreateRuntimeData(MFIntTexture* pTexture, MFTextureTemplateData** ppTemplateData, size_t* pSize, MFPlatform platform, uint flags = 0, MFTextureFormat targetFormat = MFTextureFormat.Unknown);
 
 extern (C) void MFIntTexture_WriteToHeaderFile(MFIntTexture* pTexture, const(char*) pFilename);
 
-extern (C) void MFIntTexture_FilterMipMaps(MFIntTexture* pTexture, int numMipLevels, uint32 mipFilterOptions);
+extern (C) void MFIntTexture_FilterMipMaps(MFIntTexture* pTexture, int numMipLevels, uint mipFilterOptions);
 extern (C) void MFIntTexture_ScanImage(MFIntTexture* pTexture);
 extern (C) void MFIntTexture_FlipImage(MFIntTexture* pTexture);
 

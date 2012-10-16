@@ -22,7 +22,7 @@ version(_NEW_DISPLAY)
 
 	enum MFDisplayModeFlags
 	{
-		MFDM_Fullscreen = MFBIT!0
+		MFDM_Fullscreen = MFBit!0
 	}
 
 	struct MFDisplay;

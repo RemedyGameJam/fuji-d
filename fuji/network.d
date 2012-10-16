@@ -55,7 +55,7 @@ extern (C) int MFNetwork_GetRemoteDeviceStatus(int remoteDeviceID);
 extern (C) int MFNetwork_ConnectInputDeviceToRemoteHost(ref const(MFSocketAddress) remoteAddress, int device, int deviceID);
 
 extern (C) void MFNetwork_BeginLoggingServer();
-extern (C) int MFNetwork_ConnectToLogServer(MFSocketAddress &remoteAddress);
+extern (C) int MFNetwork_ConnectToLogServer(ref MFSocketAddress remoteAddress);
 
 extern (C) void MFNetwork_BeginFileServer();
 extern (C) void MFNetwork_BeginScriptDebugServer();

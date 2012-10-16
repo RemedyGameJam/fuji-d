@@ -15,33 +15,33 @@ struct MFFileHTTPRequestArg
 		String
 	}
 
-	const(char*) pArg;
+	const(char)* pArg;
 	ArgType type;
 	union
 	{
 		int iValue;
 		float fValue;
-		const(char*) pValue;
+		const(char)* pValue;
 	}
 
 	void SetInt(const(char*) pName, int i)
 	{
 		pArg = pName;
-		type = Int;
+		type = ArgType.Int;
 		iValue = i;
 	}
 
 	void SetFloat(const(char*) pName, float f)
 	{
 		pArg = pName;
-		type = Float;
+		type = ArgType.Float;
 		fValue = f;
 	}
 
 	void SetString(const(char*) pName, const(char*) pString)
 	{
 		pArg = pName;
-		type = String;
+		type = ArgType.String;
 		pValue = pString;
 	}
 }
