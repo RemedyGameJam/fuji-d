@@ -353,39 +353,3 @@ extern (C) void MFPrimitive_DrawArrow(const ref MFVector pos, const ref MFVector
 * @return None.
 */
 extern (C) void MFPrimitive_DrawTransform(const ref MFMatrix mat, float scale, bool lite = false);
-
-
-private:
-
-version(Windows)
-{
-	static this()
-	{
-		FindFujiFunction!MFPrimitive;
-		FindFujiFunction!MFBegin;
-		FindFujiFunction!MFSetMatrix;
-		FindFujiFunction!MFSetColour;
-		FindFujiFunction!MFSetTexCoord1;
-		FindFujiFunction!MFSetNormal;
-		FindFujiFunction!MFSetPosition;
-		FindFujiFunction!MFEnd;
-		FindFujiFunction!MFPrimitive_BeginBlitter;
-		FindFujiFunction!MFPrimitive_Blit;
-		FindFujiFunction!MFPrimitive_BlitRect;
-		FindFujiFunction!MFPrimitive_StretchBlit;
-		FindFujiFunction!MFPrimitive_StretchBlitRect;
-		FindFujiFunction!MFPrimitive_EndBlitter;
-		FindFujiFunction!MFPrimitive_DrawQuad;
-		FindFujiFunction!MFPrimitive_DrawQuadV;
-		FindFujiFunction!MFPrimitive_DrawUntexturedQuad;
-		FindFujiFunction!MFPrimitive_DrawUntexturedQuadV;
-		FindFujiFunction!MFPrimitive_DrawBox;
-		FindFujiFunction!MFPrimitive_DrawSphere;
-		FindFujiFunction!MFPrimitive_DrawCapsule;
-		FindFujiFunction!MFPrimitive_DrawCylinder;
-		FindFujiFunction!MFPrimitive_DrawPlane;
-		FindFujiFunction!MFPrimitive_DrawCone;
-		FindFujiFunction!MFPrimitive_DrawArrow;
-		FindFujiFunction!MFPrimitive_DrawTransform;
-	}
-}

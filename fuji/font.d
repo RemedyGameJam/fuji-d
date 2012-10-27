@@ -192,28 +192,3 @@ extern (C) float MFFont_DrawTextAnchored(MFFont *pFont, const char *pText, const
 * @return Returns a pointer to the debug font.
 */
 extern (C) MFFont* MFFont_GetDebugFont();
-
-
-private:
-
-version(Windows)
-{
-	static this()
-	{
-		FindFujiFunction!MFFont_Create;
-		FindFujiFunction!MFFont_Destroy;
-		FindFujiFunction!MFFont_GetFontHeight;
-		FindFujiFunction!MFFont_GetCharacterWidth;
-		FindFujiFunction!MFFont_GetCharPos;
-		FindFujiFunction!MFFont_GetStringWidth;
-		FindFujiFunction!MFFont_BlitText;
-		FindFujiFunction!MFFont_BlitTextf;
-		FindFujiFunction!MFFont_DrawText;
-		FindFujiFunction!MFFont_DrawText2;
-		FindFujiFunction!MFFont_DrawTextf;
-		FindFujiFunction!MFFont_DrawText2f;
-		FindFujiFunction!MFFont_DrawTextJustified;
-		FindFujiFunction!MFFont_DrawTextAnchored;
-		FindFujiFunction!MFFont_GetDebugFont;
-	}
-}

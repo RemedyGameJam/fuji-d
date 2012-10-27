@@ -75,17 +75,3 @@ extern (C) void MFDebug_SetMaximumWarningLevel(int maxLevel);
 * @return None.
 */
 extern (C) void MFDebug_SetMaximumLogLevel(int maxLevel);
-
-version(Windows)
-{
-	package void HookupDebug()
-	{
-		FindFujiFunction!MFDebug_DebugAssert;
-		FindFujiFunction!MFDebug_Message;
-		FindFujiFunction!MFDebug_Error;
-		FindFujiFunction!MFDebug_Warn;
-		FindFujiFunction!MFDebug_Log;
-		FindFujiFunction!MFDebug_SetMaximumWarningLevel;
-		FindFujiFunction!MFDebug_SetMaximumLogLevel;
-	}
-}

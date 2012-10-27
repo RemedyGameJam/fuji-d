@@ -200,29 +200,3 @@ extern (C) float MFSystem_GetFPS();
 * @see MFSystem_GetFPS()
 */
 extern (C) uint MFSystem_GetFrameCounter();
-
-
-private:
-
-version(Windows)
-{
-	static this()
-	{
-		FindFujiFunction!MFMain;
-		FindFujiFunction!MFSystem_Quit;
-		FindFujiFunction!MFSystem_RegisterSystemCallback;
-		FindFujiFunction!MFSystem_GetSystemCallback;
-		FindFujiFunction!MFSystem_GetSettingString;
-		FindFujiFunction!MFSystem_InitFromSettings;
-		FindFujiFunction!MFSystem_GetCurrentPlatform;
-		FindFujiFunction!MFSystem_GetPlatformString;
-		FindFujiFunction!MFSystem_GetPlatformName;
-		FindFujiFunction!MFSystem_GetSystemName;
-		FindFujiFunction!MFSystem_GetPlatformEndian;
-		FindFujiFunction!MFSystem_ReadRTC;
-		FindFujiFunction!MFSystem_GetRTCFrequency;
-		FindFujiFunction!MFSystem_GetTimeDelta;
-		FindFujiFunction!MFSystem_GetFPS;
-		FindFujiFunction!MFSystem_GetFrameCounter;
-	}
-}

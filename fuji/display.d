@@ -76,24 +76,4 @@ else
 	extern (C) bool MFDisplay_HasFocus();
 
 	extern (C) MFDisplayOrientation MFDisplay_GetDisplayOrientation();
-
-
-private:
-
-	version(Windows)
-	{
-		static this()
-		{
-//			FindFujiFunction!MFDisplay_SupportsFullscreen;
-//			FindFujiFunction!MFDisplay_GetNumDisplayModes;
-//			FindFujiFunction!MFDisplay_GetDisplayMode;
-			FindFujiFunction!MFDisplay_GetNativeRes;
-			FindFujiFunction!MFDisplay_GetDefaultRes;
-			FindFujiFunction!MFDisplay_GetDisplayRect;
-			FindFujiFunction!MFDisplay_GetNativeAspectRatio;
-			FindFujiFunction!MFDisplay_IsWidescreen;
-			FindFujiFunction!MFDisplay_HasFocus;
-			FindFujiFunction!MFDisplay_GetDisplayOrientation;
-		}
-	}
 }

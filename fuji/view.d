@@ -164,32 +164,3 @@ extern (C) MFMatrix* MFView_GetLocalToView(const ref MFMatrix localToWorld, MFMa
 // not sure how to do these, since we dont store either matrix, and we only have one available at a time...
 extern (C) void MFView_TransformPoint2DTo3D(const ref MFVector point, MFVector *pResult, MFVector *pResultRayDir);
 extern (C) void MFView_TransformPoint3DTo2D(const ref MFVector point, MFVector *pResult);
-
-
-private:
-
-version(Windows)
-{
-	static this()
-	{
-		FindFujiFunction!MFView_Push;
-		FindFujiFunction!MFView_Pop;
-		FindFujiFunction!MFView_SetDefault;
-		FindFujiFunction!MFView_ConfigureProjection;
-		FindFujiFunction!MFView_SetCustomProjection;
-		FindFujiFunction!MFView_SetAspectRatio;
-		FindFujiFunction!MFView_SetProjection;
-		FindFujiFunction!MFView_SetOrtho;
-		FindFujiFunction!MFView_GetOrthoRect;
-		FindFujiFunction!MFView_IsOrtho;
-		FindFujiFunction!MFView_SetCameraMatrix;
-		FindFujiFunction!MFView_GetCameraMatrix;
-		FindFujiFunction!MFView_GetWorldToViewMatrix;
-		FindFujiFunction!MFView_GetViewToScreenMatrix;
-		FindFujiFunction!MFView_GetWorldToScreenMatrix;
-		FindFujiFunction!MFView_GetLocalToScreen;
-		FindFujiFunction!MFView_GetLocalToView;
-		FindFujiFunction!MFView_TransformPoint2DTo3D;
-		FindFujiFunction!MFView_TransformPoint3DTo2D;
-	}
-}

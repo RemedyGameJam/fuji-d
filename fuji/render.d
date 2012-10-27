@@ -238,38 +238,3 @@ extern (C) size_t MFRenderer_SetRenderStateOverride(uint renderState, size_t val
 * @return Returns the current value of the global renderstate.
 */
 extern (C) size_t MFRenderer_GetRenderStateOverride(uint renderState);
-
-
-private:
-
-version(Windows)
-{
-	static this()
-	{
-		FindFujiFunction!MFRenderer_SetClearColour;
-		FindFujiFunction!MFRenderer_ClearScreen;
-		FindFujiFunction!MFRenderer_GetViewport;
-		FindFujiFunction!MFRenderer_SetViewport;
-		FindFujiFunction!MFRenderer_ResetViewport;
-		FindFujiFunction!MFRenderer_SetRenderTarget;
-		FindFujiFunction!MFRenderer_SetDeviceRenderTarget;
-		FindFujiFunction!MFRenderer_GetTexelCenterOffset;
-		FindFujiFunction!MFRenderer_Begin;
-		FindFujiFunction!MFRenderer_GetMatrix;
-		FindFujiFunction!MFRenderer_SetMatrix;
-		FindFujiFunction!MFRenderer_SetMatrices;
-		FindFujiFunction!MFRenderer_SetBatch;
-	/*
-		FindFujiFunction!MFRenderer_FlushSettings;
-		FindFujiFunction!MFRenderer_RenderMeshChunk;
-		FindFujiFunction!MFRenderer_BeginImmediate;
-		FindFujiFunction!MFRenderer_RenderVertices;
-		FindFujiFunction!MFRenderer_SetVertexData4f;
-		FindFujiFunction!MFRenderer_SetVertexData4v;
-		FindFujiFunction!MFRenderer_EndVertices;
-		FindFujiFunction!MFRenderer_EndImmediate;
-	*/
-		FindFujiFunction!MFRenderer_SetRenderStateOverride;
-		FindFujiFunction!MFRenderer_GetRenderStateOverride;
-	}
-}

@@ -49,27 +49,3 @@ enum MFEndian
 	LittleEndian = 0,	/**< Little Endian */
 	BigEndian			/**< Big Endian */
 }
-
-version(Windows)
-{
-	import std.c.windows.windows;
-
-	package void FindFujiFunction(alias F)()
-	{
-		F = cast(typeof(F))GetProcAddress(fujiDll, F.stringof.ptr);
-		assert(F != null, "Unresolved external: " ~ F.stringof);
-	}
-
-private:
-
-	HINSTANCE fujiDll;
-
-	static this()
-	{
-		fujiDll = LoadLibraryA("Fuji_Debug.dll".ptr);
-		assert(fujiDll != null, "Failed to load the Fuji_Debug.dll");
-
-		// since we public import dbg, we need to sequence this one manually
-		HookupDebug();
-	}
-}

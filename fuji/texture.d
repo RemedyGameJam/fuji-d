@@ -302,28 +302,3 @@ extern (C) bool MFTexture_IsAvailableOnPlatform(int format, int platform);
 extern (C) int MFTexture_GetBitsPerPixel(int format);
 
 extern (C) void MFTexture_GetTextureDimensions(MFTexture *pTexture, int *pWidth, int *pHeight);
-
-
-private:
-
-version(Windows)
-{
-	static this()
-	{
-		FindFujiFunction!MFTexture_Create;
-		FindFujiFunction!MFTexture_CreateDynamic;
-		FindFujiFunction!MFTexture_CreateFromRawData;
-		FindFujiFunction!MFTexture_ScaleImage;
-		FindFujiFunction!MFTexture_ScaleFromRawData;
-		FindFujiFunction!MFTexture_CreateRenderTarget;
-		FindFujiFunction!MFTexture_Destroy;
-		FindFujiFunction!MFTexture_FindTexture;
-		FindFujiFunction!MFTexture_CreateBlank;
-		FindFujiFunction!MFTexture_GetFormatString;
-		FindFujiFunction!MFTexture_GetPlatformAvailability;
-		FindFujiFunction!MFTexture_IsAvailable;
-		FindFujiFunction!MFTexture_IsAvailableOnPlatform;
-		FindFujiFunction!MFTexture_GetBitsPerPixel;
-		FindFujiFunction!MFTexture_GetTextureDimensions;
-	}
-}

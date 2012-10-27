@@ -418,32 +418,3 @@ extern (C) void MFMaterial_RegisterMaterialType(const(char)* pName, const(MFMate
 * @return None.
 */
 extern (C) void MFMaterial_UnregisterMaterialType(const(char)* pName);
-
-
-private:
-
-version(Windows)
-{
-	static this()
-	{
-		FindFujiFunction!MFMaterial_AddDefinitionsFile;
-		FindFujiFunction!MFMaterial_AddDefinitionsIni;
-		FindFujiFunction!MFMaterial_RemoveDefinitions;
-		FindFujiFunction!MFMaterial_Create;
-		FindFujiFunction!MFMaterial_Destroy;
-		FindFujiFunction!MFMaterial_Find;
-		FindFujiFunction!MFMaterial_GetStockMaterial;
-		FindFujiFunction!MFMaterial_SetMaterial;
-		FindFujiFunction!MFMaterial_GetCurrent;
-		FindFujiFunction!MFMaterial_GetMaterialName;
-		FindFujiFunction!MFMaterial_GetNumParameters;
-		FindFujiFunction!MFMaterial_GetParameterName;
-		FindFujiFunction!MFMaterial_GetParameterIndexFromName;
-		FindFujiFunction!MFMaterial_GetParameterInfo;
-		FindFujiFunction!MFMaterial_GetParameterInfoFromName;
-		FindFujiFunction!MFMaterial_GetParameter;
-		FindFujiFunction!MFMaterial_SetParameter;
-		FindFujiFunction!MFMaterial_RegisterMaterialType;
-		FindFujiFunction!MFMaterial_UnregisterMaterialType;
-	}
-}
